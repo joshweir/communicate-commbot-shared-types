@@ -1,5 +1,5 @@
-import { TDlqIgnoreRuleRawRecord } from './dlq-ignore-rules-types';
-import { TSendCommandToCommbot } from './common-types';
+import { DlqIgnoreRules } from './dlq-ignore-rules-types';
+import { Commbot } from './commbot-commands-types';
 
 export const interrogosaurusCommands = ['DLQ_CREATE_IGNORE_RULE', 'DLQ_DELETE_IGNORE_RULE'] as [
   'DLQ_CREATE_IGNORE_RULE',
@@ -8,7 +8,7 @@ export const interrogosaurusCommands = ['DLQ_CREATE_IGNORE_RULE', 'DLQ_DELETE_IG
 
 export interface TInterrogosaurusCommandArgs {
   DLQ_CREATE_IGNORE_RULE: {
-    dlqRuleRawRecord: TDlqIgnoreRuleRawRecord;
+    dlqRuleRawRecord: DlqIgnoreRules.TDlqIgnoreRuleRawRecord;
   };
 
   DLQ_DELETE_IGNORE_RULE: {
@@ -32,7 +32,7 @@ export type TInterrogosaurusCommandProcessor<C extends TInterrogosaurusCommandTy
   {
     sendCommandToCommbot,
   }: {
-    sendCommandToCommbot: TSendCommandToCommbot;
+    sendCommandToCommbot: Commbot.TSendCommandToCommbot;
   },
 ) => Promise<any>;
 export type TInterrogosaurusCommandProcessors = {

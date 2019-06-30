@@ -1,15 +1,19 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.isDlqDynamoMessage = (thing) => thing &&
-    thing.envAndDlqName &&
-    typeof thing.envAndDlqName === 'string' &&
-    thing.envAndDlqName.split('|').length === 2 &&
-    thing.sentTimestamp &&
-    typeof thing.sentTimestamp === 'number' &&
-    thing.operationId &&
-    typeof thing.operationId === 'string' &&
-    thing.messageId &&
-    typeof thing.messageId === 'string' &&
-    (typeof thing.ignoreRuleIds === 'undefined' || thing.ignoreRuleIds instanceof Array) &&
-    thing.payload;
+var Dlq;
+(function (Dlq) {
+    Dlq.isDlqDynamoMessage = (thing) => thing &&
+        thing.envAndDlqName &&
+        typeof thing.envAndDlqName === 'string' &&
+        thing.envAndDlqName.split('|').length === 2 &&
+        thing.sentTimestamp &&
+        typeof thing.sentTimestamp === 'number' &&
+        thing.operationId &&
+        typeof thing.operationId === 'string' &&
+        thing.messageId &&
+        typeof thing.messageId === 'string' &&
+        (typeof thing.ignoreRuleIds === 'undefined' || thing.ignoreRuleIds instanceof Array) &&
+        thing.payload;
+})(Dlq = exports.Dlq || (exports.Dlq = {}));
+;
 //# sourceMappingURL=dlq-types.js.map

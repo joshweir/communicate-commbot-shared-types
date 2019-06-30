@@ -1,11 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.commbotCommands = [
-    'DLQ_ALERT',
-    'DLQ_CREATE_IGNORE_RULE_SUCCESS',
-    'DLQ_CREATE_IGNORE_RULE_FAILURE',
-    'DLQ_DELETE_IGNORE_RULE_SUCCESS',
-    'DLQ_DELETE_IGNORE_RULE_FAILURE',
-];
-exports.isCommbotCommand = (thing) => !!thing && !!thing.internalCommand && exports.commbotCommands.indexOf(thing.command) !== -1;
+var Commbot;
+(function (Commbot) {
+    Commbot.commbotCommands = [
+        'DLQ_ALERT',
+        'DLQ_CREATE_IGNORE_RULE_SUCCESS',
+        'DLQ_CREATE_IGNORE_RULE_FAILURE',
+        'DLQ_DELETE_IGNORE_RULE_SUCCESS',
+        'DLQ_DELETE_IGNORE_RULE_FAILURE',
+    ];
+    Commbot.isCommbotCommand = (thing) => !!thing && !!thing.internalCommand && Commbot.commbotCommands.indexOf(thing.command) !== -1;
+})(Commbot = exports.Commbot || (exports.Commbot = {}));
+;
 //# sourceMappingURL=commbot-commands-types.js.map
