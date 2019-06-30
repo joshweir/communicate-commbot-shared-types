@@ -1,0 +1,19 @@
+{
+  "name": "communicate-commbot-shared-types",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc -b --verbose"
+  },
+  "author": "Josh Weir",
+  "license": "ISC",
+  "devDependencies": {
+    "@slack/web-api": "^5.0.1",
+    "@types/aws-lambda": "^8.10.27",
+    "aws-sdk": "^2.231.1",
+    "typescript": "~3.3.0"
+  }
+}
