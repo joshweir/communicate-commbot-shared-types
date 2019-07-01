@@ -6,11 +6,10 @@ var Dlq;
         thing.envAndDlqName &&
         typeof thing.envAndDlqName === 'string' &&
         thing.envAndDlqName.split('|').length === 2 &&
-        thing.sentTimestamp &&
         typeof thing.sentTimestamp === 'number' &&
-        thing.operationId &&
+        typeof thing.region === 'string' &&
+        ['AUS', 'NOVA'].indexOf(thing.region) > -1 &&
         typeof thing.operationId === 'string' &&
-        thing.messageId &&
         typeof thing.messageId === 'string' &&
         (typeof thing.ignoreRuleIds === 'undefined' || thing.ignoreRuleIds instanceof Array) &&
         thing.payload;

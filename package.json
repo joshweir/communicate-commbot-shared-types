@@ -10,10 +10,12 @@
   },
   "author": "Josh Weir",
   "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.231.1"
+  },
   "devDependencies": {
     "@slack/web-api": "^5.0.1",
     "@types/aws-lambda": "^8.10.27",
-    "aws-sdk": "^2.231.1",
     "typescript": "~3.3.0"
   }
 }

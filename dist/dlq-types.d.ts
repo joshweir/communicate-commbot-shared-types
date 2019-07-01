@@ -1,7 +1,9 @@
 export declare namespace Dlq {
+    type TRegion = 'AUS' | 'NOVA';
     type TDlqDynamoMessage = {
         sentTimestamp: number;
         envAndDlqName: string;
+        region: TRegion;
         operationId: string;
         messageId: string;
         ignoreRuleIds?: string[];
@@ -11,7 +13,7 @@ export declare namespace Dlq {
     type TDlqMessage = TDlqDynamoMessage & {
         processingEnvironmentId: string;
         dlqName: string;
-        region: 'AUS' | 'NOVA';
     };
+    type TDlqMessageKey = Pick<TDlqMessage, 'region' | 'dlqName' | 'processingEnvironmentId' | 'messageId'>;
 }
 //# sourceMappingURL=dlq-types.d.ts.map

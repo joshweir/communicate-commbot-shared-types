@@ -1,7 +1,10 @@
 export namespace Dlq {
+  export type TRegion = 'AUS' | 'NOVA';
+
   export type TDlqDynamoMessage = {
     sentTimestamp: number;
     envAndDlqName: string;
+    region: TRegion;
     operationId: string;
     messageId: string;
     ignoreRuleIds?: string[];
@@ -13,11 +16,10 @@ export namespace Dlq {
     thing.envAndDlqName &&
     typeof thing.envAndDlqName === 'string' &&
     thing.envAndDlqName.split('|').length === 2 &&
-    thing.sentTimestamp &&
     typeof thing.sentTimestamp === 'number' &&
-    thing.operationId &&
+    typeof thing.region === 'string' &&
+    ['AUS', 'NOVA'].indexOf(thing.region) > -1 &&
     typeof thing.operationId === 'string' &&
-    thing.messageId &&
     typeof thing.messageId === 'string' &&
     (typeof thing.ignoreRuleIds === 'undefined' || thing.ignoreRuleIds instanceof Array) &&
     thing.payload;
@@ -25,6 +27,12 @@ export namespace Dlq {
   export type TDlqMessage = TDlqDynamoMessage & {
     processingEnvironmentId: string;
     dlqName: string;
-    region: 'AUS' | 'NOVA';
   };
+
+  export type TDlqMessageKey = Pick<TDlqMessage, 
+    'region' | 
+    'dlqName' | 
+    'processingEnvironmentId' | 
+    'messageId'
+  >;
 };
