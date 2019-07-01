@@ -6,12 +6,16 @@ var DlqIgnoreRules;
     DlqIgnoreRules.isTDlqIgnoreRuleRecord = (thing) => typeof thing === 'object' &&
         typeof thing.id === 'string' &&
         typeof thing.env === 'string' &&
+        typeof thing.region === 'string' &&
+        ['AUS', 'NOVA', 'ALL'].indexOf(thing.region) > -1 &&
         typeof thing.dlqName === 'string' &&
         typeof thing.description === 'string' &&
         DlqIgnoreRules.isTDlqIgnoreRules(thing.ignoreRules);
     DlqIgnoreRules.isTDlqIgnoreRuleRawRecord = (thing) => typeof thing === 'object' &&
         typeof thing.id === 'string' &&
         typeof thing.env === 'string' &&
+        typeof thing.region === 'string' &&
+        ['AUS', 'NOVA', 'ALL'].indexOf(thing.region) > -1 &&
         typeof thing.dlqName === 'string' &&
         typeof thing.description === 'string' &&
         typeof thing.ignoreRules === 'string';

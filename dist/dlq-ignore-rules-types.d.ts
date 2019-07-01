@@ -6,6 +6,7 @@ export declare namespace DlqIgnoreRules {
     type TDlqIgnoreRuleRecord = {
         id: string;
         env: string;
+        region: 'AUS' | 'NOVA' | 'ALL';
         dlqName: string;
         description: string;
         ignoreRules: TDlqIgnoreRules;

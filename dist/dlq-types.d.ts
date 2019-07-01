@@ -11,6 +11,7 @@ export declare namespace Dlq {
     type TDlqMessage = TDlqDynamoMessage & {
         processingEnvironmentId: string;
         dlqName: string;
+        region: 'AUS' | 'NOVA';
     };
 }
 //# sourceMappingURL=dlq-types.d.ts.map
