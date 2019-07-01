@@ -25,5 +25,6 @@ export namespace Dlq {
   export type TDlqMessage = TDlqDynamoMessage & {
     processingEnvironmentId: string;
     dlqName: string;
+    region: 'AUS' | 'NOVA';
   };
 };

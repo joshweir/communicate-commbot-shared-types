@@ -11,6 +11,7 @@ export namespace DlqIgnoreRules {
   export type TDlqIgnoreRuleRecord = {
     id: string;
     env: string;
+    region: 'AUS' | 'NOVA' | 'ALL';
     dlqName: string;
     description: string;
     ignoreRules: TDlqIgnoreRules;
@@ -20,6 +21,8 @@ export namespace DlqIgnoreRules {
     typeof thing === 'object' &&
     typeof thing.id === 'string' &&
     typeof thing.env === 'string' &&
+    typeof thing.region === 'string' &&
+    ['AUS', 'NOVA', 'ALL'].indexOf(thing.region) > -1 &&
     typeof thing.dlqName === 'string' &&
     typeof thing.description === 'string' &&
     isTDlqIgnoreRules(thing.ignoreRules);
@@ -36,6 +39,8 @@ export namespace DlqIgnoreRules {
     typeof thing === 'object' &&
     typeof thing.id === 'string' &&
     typeof thing.env === 'string' &&
+    typeof thing.region === 'string' &&
+    ['AUS', 'NOVA', 'ALL'].indexOf(thing.region) > -1 &&
     typeof thing.dlqName === 'string' &&
     typeof thing.description === 'string' &&
     typeof thing.ignoreRules === 'string';
