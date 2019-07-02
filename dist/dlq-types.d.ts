@@ -1,9 +1,9 @@
+import { Region } from './regions-and-envs';
 export declare namespace Dlq {
-    type TRegion = 'AUS' | 'NOVA';
     type TDlqDynamoMessage = {
         sentTimestamp: number;
         envAndDlqName: string;
-        region: TRegion;
+        region: Region;
         operationId: string;
         messageId: string;
         ignoreRuleIds?: string[];

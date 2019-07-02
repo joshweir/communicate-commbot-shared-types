@@ -1,3 +1,4 @@
+import { RegionIncAll } from './regions-and-envs';
 declare type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 export declare namespace DlqIgnoreRules {
     type TDlqIgnoreRule = string;
@@ -6,7 +7,7 @@ export declare namespace DlqIgnoreRules {
     type TDlqIgnoreRuleRecord = {
         id: string;
         env: string;
-        region: 'AUS' | 'NOVA' | 'ALL';
+        region: RegionIncAll;
         dlqName: string;
         description: string;
         ignoreRules: TDlqIgnoreRules;

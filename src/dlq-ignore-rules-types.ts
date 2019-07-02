@@ -1,3 +1,5 @@
+import { RegionIncAll } from './regions-and-envs';
+
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 
 export namespace DlqIgnoreRules {
@@ -11,7 +13,7 @@ export namespace DlqIgnoreRules {
   export type TDlqIgnoreRuleRecord = {
     id: string;
     env: string;
-    region: 'AUS' | 'NOVA' | 'ALL';
+    region: RegionIncAll;
     dlqName: string;
     description: string;
     ignoreRules: TDlqIgnoreRules;
@@ -22,7 +24,7 @@ export namespace DlqIgnoreRules {
     typeof thing.id === 'string' &&
     typeof thing.env === 'string' &&
     typeof thing.region === 'string' &&
-    ['AUS', 'NOVA', 'ALL'].indexOf(thing.region) > -1 &&
+    ['aus', 'nova', 'all'].indexOf(thing.region) > -1 &&
     typeof thing.dlqName === 'string' &&
     typeof thing.description === 'string' &&
     isTDlqIgnoreRules(thing.ignoreRules);
@@ -40,7 +42,7 @@ export namespace DlqIgnoreRules {
     typeof thing.id === 'string' &&
     typeof thing.env === 'string' &&
     typeof thing.region === 'string' &&
-    ['AUS', 'NOVA', 'ALL'].indexOf(thing.region) > -1 &&
+    ['aus', 'nova', 'all'].indexOf(thing.region) > -1 &&
     typeof thing.dlqName === 'string' &&
     typeof thing.description === 'string' &&
     typeof thing.ignoreRules === 'string';

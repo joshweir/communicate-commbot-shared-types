@@ -1,12 +1,21 @@
 import { DlqIgnoreRules } from './dlq-ignore-rules-types';
+import { Dlq } from './dlq-types';
 import { Commbot } from './commbot-commands-types';
-export declare const interrogosaurusCommands: ["DLQ_CREATE_IGNORE_RULE", "DLQ_DELETE_IGNORE_RULE"];
+export declare const interrogosaurusCommands: ["DLQ_CREATE_IGNORE_RULE", "DLQ_DELETE_IGNORE_RULE", "DLQ_DELETE_MESSAGE", "DLQ_REQUEUE_MESSAGE"];
 export interface TInterrogosaurusCommandArgs {
     DLQ_CREATE_IGNORE_RULE: {
         dlqRuleRawRecord: DlqIgnoreRules.TDlqIgnoreRuleRawRecord;
+        slackMessageTs: string;
     };
     DLQ_DELETE_IGNORE_RULE: {
         id: string;
+        slackMessageTs: string;
+    };
+    DLQ_DELETE_MESSAGE: Dlq.TDlqMessageKey & {
+        slackMessageTs: string;
+    };
+    DLQ_REQUEUE_MESSAGE: Dlq.TDlqMessageKey & {
+        slackMessageTs: string;
     };
 }
 export declare type TInterrogosaurusCommandTypes = typeof interrogosaurusCommands;

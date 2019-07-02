@@ -8,7 +8,7 @@ var Dlq;
         thing.envAndDlqName.split('|').length === 2 &&
         typeof thing.sentTimestamp === 'number' &&
         typeof thing.region === 'string' &&
-        ['AUS', 'NOVA'].indexOf(thing.region) > -1 &&
+        ['aus', 'nova'].indexOf(thing.region) > -1 &&
         typeof thing.operationId === 'string' &&
         typeof thing.messageId === 'string' &&
         (typeof thing.ignoreRuleIds === 'undefined' || thing.ignoreRuleIds instanceof Array) &&

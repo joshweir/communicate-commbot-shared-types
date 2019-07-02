@@ -7,4 +7,5 @@ __export(require("./dlq-ignore-rules-types"));
 __export(require("./commbot-commands-types"));
 __export(require("./interrogosaurus-commands-types"));
 __export(require("./dlq-types"));
+__export(require("./regions-and-envs"));
 //# sourceMappingURL=index.js.map
