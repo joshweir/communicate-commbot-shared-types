@@ -13,6 +13,7 @@ var Commbot;
         'DLQ_DELETE_MESSAGE_SUCCESS',
         'DLQ_DELETE_MESSAGE_FAILURE',
     ];
+    ;
     Commbot.isCommbotCommand = (thing) => !!thing && !!thing.internalCommand && Commbot.commbotCommands.indexOf(thing.command) !== -1;
 })(Commbot = exports.Commbot || (exports.Commbot = {}));
 ;

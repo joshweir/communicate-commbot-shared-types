@@ -16,7 +16,7 @@ export const interrogosaurusCommands = [
 
 export interface TInterrogosaurusCommandArgs {
   DLQ_CREATE_IGNORE_RULE: {
-    dlqRuleRawRecord: DlqIgnoreRules.TDlqIgnoreRuleRawRecord;
+    dlqIgnoreRuleStringified: string;
     slackMessageTs: string;
   };
 
