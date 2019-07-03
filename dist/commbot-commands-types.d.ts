@@ -1,6 +1,6 @@
 import { SNS } from 'aws-sdk';
 import { WebClient } from '@slack/web-api';
-import { DlqIgnoreRules } from './dlq-ignore-rules-types';
+import { DlqIgnoreRules } from './dlq-ignore-rules';
 import { Dlq } from './dlq-types';
 export declare namespace Commbot {
     type TSendCommandToCommbot = (command: TCommbotCommand['command'], args: TCommbotCommand['args']) => Promise<any>;
@@ -17,20 +17,18 @@ export declare namespace Commbot {
             dlqMessage: Dlq.TDlqMessage;
         };
         DLQ_CREATE_IGNORE_RULE_SUCCESS: {
-            dlqRuleRawRecord: DlqIgnoreRules.TDlqIgnoreRuleRawRecord;
+            dlqIgnoreRuleRawRecord: DlqIgnoreRules.TDlqIgnoreRuleRawRecord;
             slackMessageTs: string;
         };
         DLQ_CREATE_IGNORE_RULE_FAILURE: {
-            dlqRuleRawRecord: DlqIgnoreRules.TDlqIgnoreRuleRawRecord;
+            dlqIgnoreRuleRawRecord: DlqIgnoreRules.TDlqIgnoreRuleRawRecord;
             error: string;
             slackMessageTs: string;
         };
-        DLQ_DELETE_IGNORE_RULE_SUCCESS: {
-            id: string;
+        DLQ_DELETE_IGNORE_RULE_SUCCESS: DlqIgnoreRules.TIgnoreRuleKey & {
             slackMessageTs: string;
         };
-        DLQ_DELETE_IGNORE_RULE_FAILURE: {
-            id: string;
+        DLQ_DELETE_IGNORE_RULE_FAILURE: DlqIgnoreRules.TIgnoreRuleKey & {
             error: string;
             slackMessageTs: string;
         };
