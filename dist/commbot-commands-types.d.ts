@@ -11,7 +11,7 @@ export declare namespace Commbot {
         sender: string;
         botUser: string;
     };
-    const commbotCommands: ["DLQ_ALERT", "DLQ_CREATE_IGNORE_RULE_SUCCESS", "DLQ_CREATE_IGNORE_RULE_FAILURE", "DLQ_DELETE_IGNORE_RULE_SUCCESS", "DLQ_DELETE_IGNORE_RULE_FAILURE", "DLQ_REQUEUE_MESSAGE_SUCCESS", "DLQ_REQUEUE_MESSAGE_FAILURE", "DLQ_DELETE_MESSAGE_SUCCESS", "DLQ_DELETE_MESSAGE_FAILURE"];
+    const commbotCommands: ["DLQ_ALERT", "DLQ_CREATE_IGNORE_RULE_SUCCESS", "DLQ_CREATE_IGNORE_RULE_FAILURE", "DLQ_DELETE_IGNORE_RULE_SUCCESS", "DLQ_DELETE_IGNORE_RULE_FAILURE", "DLQ_REQUEUE_MESSAGE_SUCCESS", "DLQ_REQUEUE_MESSAGE_FAILURE", "DLQ_DELETE_MESSAGE_SUCCESS", "DLQ_DELETE_MESSAGE_FAILURE", "DLQ_BULK_REQUEUE_SUCCESS", "DLQ_BULK_REQUEUE_FAILURE", "DLQ_LIST_SUCCESS", "DLQ_LIST_FAILURE"];
     interface TCommbotCommandArgs {
         DLQ_ALERT: {
             dlqMessage: Dlq.TDlqMessage;
@@ -50,16 +50,42 @@ export declare namespace Commbot {
             error: string;
             slackMessageTs: string;
         };
+        DLQ_BULK_REQUEUE_SUCCESS: {
+            dlqName: string;
+            processingEnvironmentId: string;
+            slackMessageTs: string;
+        };
+        DLQ_BULK_REQUEUE_FAILURE: {
+            dlqName: string;
+            processingEnvironmentId: string;
+            error: string;
+            slackMessageTs: string;
+        };
+        DLQ_LIST_SUCCESS: {
+            dlqName: string;
+            processingEnvironmentId: string;
+            content: string;
+            slackMessageTs: string;
+        };
+        DLQ_LIST_FAILURE: {
+            dlqName: string;
+            processingEnvironmentId: string;
+            error: string;
+            slackMessageTs: string;
+        };
     }
     type TCommbotCommandTypes = typeof commbotCommands;
     type TCommbotCommandType = TCommbotCommandTypes[number];
     type TCommbotCommand<A extends {} = {}> = {
         internalCommand: true;
+        localProcessingEnv?: string;
         command: TCommbotCommandType;
         args: A;
     };
     const isCommbotCommand: (thing: any) => thing is TCommbotCommand<{}>;
-    type TCommbotCommandProcessor<C extends TCommbotCommandType> = (c: TCommbotCommand<TCommbotCommandArgs[C]>, context: Pick<Commbot.TSlackContext, 'client'>) => Promise<any>;
+    type TCommbotCommandProcessor<C extends TCommbotCommandType> = (c: TCommbotCommand<TCommbotCommandArgs[C]>, context: Pick<Commbot.TSlackContext, 'client'> & {
+        userclient: WebClient;
+    }) => Promise<any>;
     type TCommbotCommandProcessors = {
         [c in TCommbotCommandType]: TCommbotCommandProcessor<c>;
     };

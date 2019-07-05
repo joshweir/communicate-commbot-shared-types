@@ -7,11 +7,15 @@ export const interrogosaurusCommands = [
   'DLQ_DELETE_IGNORE_RULE',
   'DLQ_DELETE_MESSAGE',
   'DLQ_REQUEUE_MESSAGE',
+  'DLQ_BULK_REQUEUE',
+  'DLQ_LIST',
 ] as [
   'DLQ_CREATE_IGNORE_RULE',
   'DLQ_DELETE_IGNORE_RULE',
   'DLQ_DELETE_MESSAGE',
   'DLQ_REQUEUE_MESSAGE',
+  'DLQ_BULK_REQUEUE',
+  'DLQ_LIST',
 ];
 
 export interface TInterrogosaurusCommandArgs {
@@ -31,6 +35,18 @@ export interface TInterrogosaurusCommandArgs {
   DLQ_REQUEUE_MESSAGE: Dlq.TDlqMessageKey & {
     slackMessageTs: string;
   };
+
+  DLQ_BULK_REQUEUE: {
+    dlqName: string;
+    processingEnvironmentId: string;
+    slackMessageTs: string;
+  };
+
+  DLQ_LIST: {
+    dlqName: string;
+    processingEnvironmentId: string;
+    slackMessageTs: string;
+  };
 }
 
 export type TInterrogosaurusCommandTypes = typeof interrogosaurusCommands;
@@ -39,6 +55,7 @@ export type TInterrogosaurusCommandType = TInterrogosaurusCommandTypes[number];
 export type TInterrogosaurusCommand<A extends {} = {}> = {
   command: TInterrogosaurusCommandType;
   args: A;
+  localProcessingEnv?: string;
 };
 
 export const isInterrogosaurusCommand = (thing: any): thing is TInterrogosaurusCommand =>

@@ -12,6 +12,10 @@ var Commbot;
         'DLQ_REQUEUE_MESSAGE_FAILURE',
         'DLQ_DELETE_MESSAGE_SUCCESS',
         'DLQ_DELETE_MESSAGE_FAILURE',
+        'DLQ_BULK_REQUEUE_SUCCESS',
+        'DLQ_BULK_REQUEUE_FAILURE',
+        'DLQ_LIST_SUCCESS',
+        'DLQ_LIST_FAILURE',
     ];
     ;
     Commbot.isCommbotCommand = (thing) => !!thing && !!thing.internalCommand && Commbot.commbotCommands.indexOf(thing.command) !== -1;

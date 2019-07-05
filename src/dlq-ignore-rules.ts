@@ -62,19 +62,14 @@ export namespace DlqIgnoreRules {
     return;
   };
 
-  export type TIgnoreRuleKey = {
-    id: string;
-    region: RegionIncAll;
-    dataEnv: DataEnvIncAll;
-  };
+  export type TIgnoreRuleKey = Pick<TDlqIgnoreRuleRecord, 'id' | 'region' | 'env'>;
   
   export const isTIgnoreRuleKey = (thing: any): thing is TIgnoreRuleKey => 
     typeof thing === 'object' &&
     typeof thing.id === 'string' &&
     typeof thing.region === 'string' &&
     ['aus', 'nova', 'all'].indexOf(thing.region) > -1 &&
-    typeof thing.dataEnv === 'string' &&
-    ['com-datastaging', 'com-datalive', 'all'].indexOf(thing.dataEnv) > -1;
+    typeof thing.env === 'string';
   
   export const parseIgnoreRuleKey = (input: string): TIgnoreRuleKey | undefined => {
     try {

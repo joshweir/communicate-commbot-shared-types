@@ -37,8 +37,7 @@ var DlqIgnoreRules;
         typeof thing.id === 'string' &&
         typeof thing.region === 'string' &&
         ['aus', 'nova', 'all'].indexOf(thing.region) > -1 &&
-        typeof thing.dataEnv === 'string' &&
-        ['com-datastaging', 'com-datalive', 'all'].indexOf(thing.dataEnv) > -1;
+        typeof thing.env === 'string';
     DlqIgnoreRules.parseIgnoreRuleKey = (input) => {
         try {
             const record = JSON.parse(input);

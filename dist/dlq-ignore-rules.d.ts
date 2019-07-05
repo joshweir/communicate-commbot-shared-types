@@ -1,4 +1,4 @@
-import { RegionIncAll, DataEnvIncAll } from './regions-and-envs';
+import { RegionIncAll } from './regions-and-envs';
 declare type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 export declare namespace DlqIgnoreRules {
     type TDlqIgnoreRule = string;
@@ -21,13 +21,9 @@ export declare namespace DlqIgnoreRules {
     };
     const isTDlqIgnoreRuleRawRecord: (thing: any) => thing is TDlqIgnoreRuleRawRecord;
     const parseDlqIgnoreRuleRawRecord: (input: string) => TDlqIgnoreRuleRawRecord | undefined;
-    type TIgnoreRuleKey = {
-        id: string;
-        region: RegionIncAll;
-        dataEnv: DataEnvIncAll;
-    };
-    const isTIgnoreRuleKey: (thing: any) => thing is TIgnoreRuleKey;
-    const parseIgnoreRuleKey: (input: string) => TIgnoreRuleKey | undefined;
+    type TIgnoreRuleKey = Pick<TDlqIgnoreRuleRecord, 'id' | 'region' | 'env'>;
+    const isTIgnoreRuleKey: (thing: any) => thing is Pick<TDlqIgnoreRuleRecord, "id" | "env" | "region">;
+    const parseIgnoreRuleKey: (input: string) => Pick<TDlqIgnoreRuleRecord, "id" | "env" | "region"> | undefined;
 }
 export {};
 //# sourceMappingURL=dlq-ignore-rules.d.ts.map

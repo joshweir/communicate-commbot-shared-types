@@ -28,6 +28,10 @@ export namespace Commbot {
     'DLQ_REQUEUE_MESSAGE_FAILURE',
     'DLQ_DELETE_MESSAGE_SUCCESS',
     'DLQ_DELETE_MESSAGE_FAILURE',
+    'DLQ_BULK_REQUEUE_SUCCESS',
+    'DLQ_BULK_REQUEUE_FAILURE',
+    'DLQ_LIST_SUCCESS',
+    'DLQ_LIST_FAILURE',
   ] as [
     'DLQ_ALERT',
     'DLQ_CREATE_IGNORE_RULE_SUCCESS',
@@ -38,6 +42,10 @@ export namespace Commbot {
     'DLQ_REQUEUE_MESSAGE_FAILURE',
     'DLQ_DELETE_MESSAGE_SUCCESS',
     'DLQ_DELETE_MESSAGE_FAILURE',
+    'DLQ_BULK_REQUEUE_SUCCESS',
+    'DLQ_BULK_REQUEUE_FAILURE',
+    'DLQ_LIST_SUCCESS',
+    'DLQ_LIST_FAILURE',
   ];
   
   export interface TCommbotCommandArgs {
@@ -86,6 +94,33 @@ export namespace Commbot {
       error: string;
       slackMessageTs: string;
     };
+
+    DLQ_BULK_REQUEUE_SUCCESS: {
+      dlqName: string;
+      processingEnvironmentId: string;
+      slackMessageTs: string;
+    };
+
+    DLQ_BULK_REQUEUE_FAILURE: {
+      dlqName: string;
+      processingEnvironmentId: string;
+      error: string;
+      slackMessageTs: string;
+    };
+
+    DLQ_LIST_SUCCESS: {
+      dlqName: string;
+      processingEnvironmentId: string;
+      content: string;
+      slackMessageTs: string;
+    };
+
+    DLQ_LIST_FAILURE: {
+      dlqName: string;
+      processingEnvironmentId: string;
+      error: string;
+      slackMessageTs: string;
+    };
   };
   
   export type TCommbotCommandTypes = typeof commbotCommands;
@@ -93,6 +128,7 @@ export namespace Commbot {
   
   export type TCommbotCommand<A extends {} = {}> = {
     internalCommand: true;
+    localProcessingEnv?: string;
     command: TCommbotCommandType;
     args: A;
   };
@@ -102,7 +138,7 @@ export namespace Commbot {
   
   export type TCommbotCommandProcessor<C extends TCommbotCommandType> = (
     c: TCommbotCommand<TCommbotCommandArgs[C]>,
-    context: Pick<Commbot.TSlackContext, 'client'>,
+    context: Pick<Commbot.TSlackContext, 'client'> & { userclient: WebClient },
   ) => Promise<any>;
   export type TCommbotCommandProcessors = { [c in TCommbotCommandType]: TCommbotCommandProcessor<c> };  
 };
