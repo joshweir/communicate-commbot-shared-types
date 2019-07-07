@@ -10,14 +10,15 @@ export type DataEnvIncAll = DataEnv | 'all';
 const liveDataEnvProcessingEnvs = ['qa', 'beta', 'live', 'com-datalive'];
 
 export const mapDataEnvsFromAllEnvs = (envs: string[]): DataEnv[] => {
-  if (envs.indexOf('all') > -1) {
+  const envsLowerCase = envs.map(s => s.toLocaleLowerCase());
+  if (envsLowerCase.indexOf('all') > -1) {
     return ['com-datastaging', 'com-datalive'];
   }
 
   const dataEnvs: DataEnv[] = [];
 
   if (
-    envs.find((env) => {
+    envsLowerCase.find((env) => {
       return liveDataEnvProcessingEnvs.find((p) => p === env);
     })
   ) {
@@ -25,7 +26,7 @@ export const mapDataEnvsFromAllEnvs = (envs: string[]): DataEnv[] => {
   }
 
   if (
-    envs.find((env) => {
+    envsLowerCase.find((env) => {
       return liveDataEnvProcessingEnvs.find((p) => p !== env);
     })
   ) {

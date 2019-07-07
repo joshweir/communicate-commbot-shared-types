@@ -9,6 +9,7 @@ export const interrogosaurusCommands = [
   'DLQ_REQUEUE_MESSAGE',
   'DLQ_BULK_REQUEUE',
   'DLQ_LIST',
+  'DLQ_LIST_IGNORE_RULES',
 ] as [
   'DLQ_CREATE_IGNORE_RULE',
   'DLQ_DELETE_IGNORE_RULE',
@@ -16,6 +17,7 @@ export const interrogosaurusCommands = [
   'DLQ_REQUEUE_MESSAGE',
   'DLQ_BULK_REQUEUE',
   'DLQ_LIST',
+  'DLQ_LIST_IGNORE_RULES',
 ];
 
 export interface TInterrogosaurusCommandArgs {
@@ -43,6 +45,12 @@ export interface TInterrogosaurusCommandArgs {
   };
 
   DLQ_LIST: {
+    dlqName: string;
+    processingEnvironmentId: string;
+    slackMessageTs: string;
+  };
+
+  DLQ_LIST_IGNORE_RULES: {
     dlqName: string;
     processingEnvironmentId: string;
     slackMessageTs: string;

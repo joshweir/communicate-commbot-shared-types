@@ -16,6 +16,8 @@ var Commbot;
         'DLQ_BULK_REQUEUE_FAILURE',
         'DLQ_LIST_SUCCESS',
         'DLQ_LIST_FAILURE',
+        'DLQ_LIST_IGNORE_RULES_SUCCESS',
+        'DLQ_LIST_IGNORE_RULES_FAILURE',
     ];
     ;
     Commbot.isCommbotCommand = (thing) => !!thing && !!thing.internalCommand && Commbot.commbotCommands.indexOf(thing.command) !== -1;

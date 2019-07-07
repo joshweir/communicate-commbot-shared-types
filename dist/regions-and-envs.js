@@ -5,16 +5,17 @@ exports.appEnvironments = ['dev', 'staging', 'qa', 'beta', 'live'];
 exports.dataEnvironments = ['com-datastaging', 'com-datalive'];
 const liveDataEnvProcessingEnvs = ['qa', 'beta', 'live', 'com-datalive'];
 exports.mapDataEnvsFromAllEnvs = (envs) => {
-    if (envs.indexOf('all') > -1) {
+    const envsLowerCase = envs.map(s => s.toLocaleLowerCase());
+    if (envsLowerCase.indexOf('all') > -1) {
         return ['com-datastaging', 'com-datalive'];
     }
     const dataEnvs = [];
-    if (envs.find((env) => {
+    if (envsLowerCase.find((env) => {
         return liveDataEnvProcessingEnvs.find((p) => p === env);
     })) {
         dataEnvs.push('com-datalive');
     }
-    if (envs.find((env) => {
+    if (envsLowerCase.find((env) => {
         return liveDataEnvProcessingEnvs.find((p) => p !== env);
     })) {
         dataEnvs.push('com-datastaging');

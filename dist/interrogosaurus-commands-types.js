@@ -7,6 +7,7 @@ exports.interrogosaurusCommands = [
     'DLQ_REQUEUE_MESSAGE',
     'DLQ_BULK_REQUEUE',
     'DLQ_LIST',
+    'DLQ_LIST_IGNORE_RULES',
 ];
 exports.isInterrogosaurusCommand = (thing) => !!thing && exports.interrogosaurusCommands.indexOf(thing.command) !== -1;
 //# sourceMappingURL=interrogosaurus-commands-types.js.map

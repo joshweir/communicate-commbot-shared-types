@@ -11,7 +11,7 @@ export declare namespace Commbot {
         sender: string;
         botUser: string;
     };
-    const commbotCommands: ["DLQ_ALERT", "DLQ_CREATE_IGNORE_RULE_SUCCESS", "DLQ_CREATE_IGNORE_RULE_FAILURE", "DLQ_DELETE_IGNORE_RULE_SUCCESS", "DLQ_DELETE_IGNORE_RULE_FAILURE", "DLQ_REQUEUE_MESSAGE_SUCCESS", "DLQ_REQUEUE_MESSAGE_FAILURE", "DLQ_DELETE_MESSAGE_SUCCESS", "DLQ_DELETE_MESSAGE_FAILURE", "DLQ_BULK_REQUEUE_SUCCESS", "DLQ_BULK_REQUEUE_FAILURE", "DLQ_LIST_SUCCESS", "DLQ_LIST_FAILURE"];
+    const commbotCommands: ["DLQ_ALERT", "DLQ_CREATE_IGNORE_RULE_SUCCESS", "DLQ_CREATE_IGNORE_RULE_FAILURE", "DLQ_DELETE_IGNORE_RULE_SUCCESS", "DLQ_DELETE_IGNORE_RULE_FAILURE", "DLQ_REQUEUE_MESSAGE_SUCCESS", "DLQ_REQUEUE_MESSAGE_FAILURE", "DLQ_DELETE_MESSAGE_SUCCESS", "DLQ_DELETE_MESSAGE_FAILURE", "DLQ_BULK_REQUEUE_SUCCESS", "DLQ_BULK_REQUEUE_FAILURE", "DLQ_LIST_SUCCESS", "DLQ_LIST_FAILURE", "DLQ_LIST_IGNORE_RULES_SUCCESS", "DLQ_LIST_IGNORE_RULES_FAILURE"];
     interface TCommbotCommandArgs {
         DLQ_ALERT: {
             dlqMessage: Dlq.TDlqMessage;
@@ -68,6 +68,18 @@ export declare namespace Commbot {
             slackMessageTs: string;
         };
         DLQ_LIST_FAILURE: {
+            dlqName: string;
+            processingEnvironmentId: string;
+            error: string;
+            slackMessageTs: string;
+        };
+        DLQ_LIST_IGNORE_RULES_SUCCESS: {
+            dlqName: string;
+            processingEnvironmentId: string;
+            content: string;
+            slackMessageTs: string;
+        };
+        DLQ_LIST_IGNORE_RULES_FAILURE: {
             dlqName: string;
             processingEnvironmentId: string;
             error: string;

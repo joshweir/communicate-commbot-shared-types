@@ -32,6 +32,8 @@ export namespace Commbot {
     'DLQ_BULK_REQUEUE_FAILURE',
     'DLQ_LIST_SUCCESS',
     'DLQ_LIST_FAILURE',
+    'DLQ_LIST_IGNORE_RULES_SUCCESS',
+    'DLQ_LIST_IGNORE_RULES_FAILURE',
   ] as [
     'DLQ_ALERT',
     'DLQ_CREATE_IGNORE_RULE_SUCCESS',
@@ -46,6 +48,8 @@ export namespace Commbot {
     'DLQ_BULK_REQUEUE_FAILURE',
     'DLQ_LIST_SUCCESS',
     'DLQ_LIST_FAILURE',
+    'DLQ_LIST_IGNORE_RULES_SUCCESS',
+    'DLQ_LIST_IGNORE_RULES_FAILURE',
   ];
   
   export interface TCommbotCommandArgs {
@@ -116,6 +120,20 @@ export namespace Commbot {
     };
 
     DLQ_LIST_FAILURE: {
+      dlqName: string;
+      processingEnvironmentId: string;
+      error: string;
+      slackMessageTs: string;
+    };
+
+    DLQ_LIST_IGNORE_RULES_SUCCESS: {
+      dlqName: string;
+      processingEnvironmentId: string;
+      content: string;
+      slackMessageTs: string;
+    };
+
+    DLQ_LIST_IGNORE_RULES_FAILURE: {
       dlqName: string;
       processingEnvironmentId: string;
       error: string;

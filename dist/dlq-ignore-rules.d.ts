@@ -20,10 +20,11 @@ export declare namespace DlqIgnoreRules {
         ignoreRules: string;
     };
     const isTDlqIgnoreRuleRawRecord: (thing: any) => thing is TDlqIgnoreRuleRawRecord;
+    const parseMultiValueIgnoreRuleField: (input: string) => string;
     const parseDlqIgnoreRuleRawRecord: (input: string) => TDlqIgnoreRuleRawRecord | undefined;
     type TIgnoreRuleKey = Pick<TDlqIgnoreRuleRecord, 'id' | 'region' | 'env'>;
-    const isTIgnoreRuleKey: (thing: any) => thing is Pick<TDlqIgnoreRuleRecord, "id" | "env" | "region">;
-    const parseIgnoreRuleKey: (input: string) => Pick<TDlqIgnoreRuleRecord, "id" | "env" | "region"> | undefined;
+    const isTIgnoreRuleKey: (thing: any) => thing is Pick<TDlqIgnoreRuleRecord, "region" | "id" | "env">;
+    const parseIgnoreRuleKey: (input: string) => Pick<TDlqIgnoreRuleRecord, "region" | "id" | "env"> | undefined;
 }
 export {};
 //# sourceMappingURL=dlq-ignore-rules.d.ts.map
