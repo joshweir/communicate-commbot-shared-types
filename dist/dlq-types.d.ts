@@ -5,7 +5,7 @@ export declare namespace Dlq {
         envAndDlqName: string;
         region: Region;
         operationId?: string;
-        messageId?: string;
+        messageId: string;
         ignoreRuleIds?: string[];
         payload: string;
     };
