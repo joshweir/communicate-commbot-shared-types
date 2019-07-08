@@ -4,8 +4,8 @@ export declare namespace Dlq {
         sentTimestamp: number;
         envAndDlqName: string;
         region: Region;
-        operationId: string;
-        messageId: string;
+        operationId?: string;
+        messageId?: string;
         ignoreRuleIds?: string[];
         payload: string;
     };
