@@ -10,6 +10,8 @@ export const interrogosaurusCommands = [
   'DLQ_BULK_REQUEUE',
   'DLQ_LIST',
   'DLQ_LIST_IGNORE_RULES',
+  'DLQ_RESUME',
+  'DLQ_PAUSE',
 ] as [
   'DLQ_CREATE_IGNORE_RULE',
   'DLQ_DELETE_IGNORE_RULE',
@@ -18,43 +20,43 @@ export const interrogosaurusCommands = [
   'DLQ_BULK_REQUEUE',
   'DLQ_LIST',
   'DLQ_LIST_IGNORE_RULES',
+  'DLQ_RESUME',
+  'DLQ_PAUSE',
 ];
 
+type TInterrogosaurusCommandArgsCommon = {
+  slackMessageTs: string;
+};
+
 export interface TInterrogosaurusCommandArgs {
-  DLQ_CREATE_IGNORE_RULE: {
+  DLQ_CREATE_IGNORE_RULE: TInterrogosaurusCommandArgsCommon & {
     dlqIgnoreRuleRawRecord: DlqIgnoreRules.TDlqIgnoreRuleRawRecord;
-    slackMessageTs: string;
   };
 
-  DLQ_DELETE_IGNORE_RULE: DlqIgnoreRules.TIgnoreRuleKey & {
-    slackMessageTs: string;
-  };
+  DLQ_DELETE_IGNORE_RULE: TInterrogosaurusCommandArgsCommon & DlqIgnoreRules.TIgnoreRuleKey;
 
-  DLQ_DELETE_MESSAGE: Dlq.TDlqMessageKey & {
-    slackMessageTs: string;
-  };
+  DLQ_DELETE_MESSAGE: TInterrogosaurusCommandArgsCommon & Dlq.TDlqMessageKey;
 
-  DLQ_REQUEUE_MESSAGE: Dlq.TDlqMessageKey & {
-    slackMessageTs: string;
-  };
+  DLQ_REQUEUE_MESSAGE: TInterrogosaurusCommandArgsCommon & Dlq.TDlqMessageKey;
 
-  DLQ_BULK_REQUEUE: {
+  DLQ_BULK_REQUEUE: TInterrogosaurusCommandArgsCommon & {
     dlqName: string;
     processingEnvironmentId: string;
-    slackMessageTs: string;
   };
 
-  DLQ_LIST: {
+  DLQ_LIST: TInterrogosaurusCommandArgsCommon & {
     dlqName: string;
     processingEnvironmentId: string;
-    slackMessageTs: string;
   };
 
-  DLQ_LIST_IGNORE_RULES: {
+  DLQ_LIST_IGNORE_RULES: TInterrogosaurusCommandArgsCommon & {
     dlqName: string;
     processingEnvironmentId: string;
-    slackMessageTs: string;
   };
+
+  DLQ_RESUME: TInterrogosaurusCommandArgsCommon;
+
+  DLQ_PAUSE: TInterrogosaurusCommandArgsCommon;
 }
 
 export type TInterrogosaurusCommandTypes = typeof interrogosaurusCommands;
