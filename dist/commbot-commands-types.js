@@ -18,6 +18,10 @@ var Commbot;
         'DLQ_LIST_FAILURE',
         'DLQ_LIST_IGNORE_RULES_SUCCESS',
         'DLQ_LIST_IGNORE_RULES_FAILURE',
+        'DLQ_RESUME_SUCCESS',
+        'DLQ_RESUME_FAILURE',
+        'DLQ_PAUSE_SUCCESS',
+        'DLQ_PAUSE_FAILURE',
     ];
     ;
     Commbot.isCommbotCommand = (thing) => !!thing && !!thing.internalCommand && Commbot.commbotCommands.indexOf(thing.command) !== -1;

@@ -1,36 +1,31 @@
 import { Dlq } from './dlq-types';
 import { Commbot } from './commbot-commands-types';
 import { DlqIgnoreRules } from './dlq-ignore-rules';
-export declare const interrogosaurusCommands: ["DLQ_CREATE_IGNORE_RULE", "DLQ_DELETE_IGNORE_RULE", "DLQ_DELETE_MESSAGE", "DLQ_REQUEUE_MESSAGE", "DLQ_BULK_REQUEUE", "DLQ_LIST", "DLQ_LIST_IGNORE_RULES"];
+export declare const interrogosaurusCommands: ["DLQ_CREATE_IGNORE_RULE", "DLQ_DELETE_IGNORE_RULE", "DLQ_DELETE_MESSAGE", "DLQ_REQUEUE_MESSAGE", "DLQ_BULK_REQUEUE", "DLQ_LIST", "DLQ_LIST_IGNORE_RULES", "DLQ_RESUME", "DLQ_PAUSE"];
+declare type TInterrogosaurusCommandArgsCommon = {
+    slackMessageTs: string;
+};
 export interface TInterrogosaurusCommandArgs {
-    DLQ_CREATE_IGNORE_RULE: {
+    DLQ_CREATE_IGNORE_RULE: TInterrogosaurusCommandArgsCommon & {
         dlqIgnoreRuleRawRecord: DlqIgnoreRules.TDlqIgnoreRuleRawRecord;
-        slackMessageTs: string;
     };
-    DLQ_DELETE_IGNORE_RULE: DlqIgnoreRules.TIgnoreRuleKey & {
-        slackMessageTs: string;
-    };
-    DLQ_DELETE_MESSAGE: Dlq.TDlqMessageKey & {
-        slackMessageTs: string;
-    };
-    DLQ_REQUEUE_MESSAGE: Dlq.TDlqMessageKey & {
-        slackMessageTs: string;
-    };
-    DLQ_BULK_REQUEUE: {
+    DLQ_DELETE_IGNORE_RULE: TInterrogosaurusCommandArgsCommon & DlqIgnoreRules.TIgnoreRuleKey;
+    DLQ_DELETE_MESSAGE: TInterrogosaurusCommandArgsCommon & Dlq.TDlqMessageKey;
+    DLQ_REQUEUE_MESSAGE: TInterrogosaurusCommandArgsCommon & Dlq.TDlqMessageKey;
+    DLQ_BULK_REQUEUE: TInterrogosaurusCommandArgsCommon & {
         dlqName: string;
         processingEnvironmentId: string;
-        slackMessageTs: string;
     };
-    DLQ_LIST: {
+    DLQ_LIST: TInterrogosaurusCommandArgsCommon & {
         dlqName: string;
         processingEnvironmentId: string;
-        slackMessageTs: string;
     };
-    DLQ_LIST_IGNORE_RULES: {
+    DLQ_LIST_IGNORE_RULES: TInterrogosaurusCommandArgsCommon & {
         dlqName: string;
         processingEnvironmentId: string;
-        slackMessageTs: string;
     };
+    DLQ_RESUME: TInterrogosaurusCommandArgsCommon;
+    DLQ_PAUSE: TInterrogosaurusCommandArgsCommon;
 }
 export declare type TInterrogosaurusCommandTypes = typeof interrogosaurusCommands;
 export declare type TInterrogosaurusCommandType = TInterrogosaurusCommandTypes[number];
@@ -46,4 +41,5 @@ export declare type TInterrogosaurusCommandProcessor<C extends TInterrogosaurusC
 export declare type TInterrogosaurusCommandProcessors = {
     [c in TInterrogosaurusCommandType]: TInterrogosaurusCommandProcessor<c>;
 };
+export {};
 //# sourceMappingURL=interrogosaurus-commands-types.d.ts.map

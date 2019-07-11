@@ -2,6 +2,7 @@ import { SNS } from 'aws-sdk';
 import { WebClient } from '@slack/web-api';
 import { DlqIgnoreRules } from './dlq-ignore-rules';
 import { Dlq } from './dlq-types';
+import { DataEnv, Region } from './regions-and-envs';
 export declare namespace Commbot {
     type TSendCommandToCommbot = (command: TCommbotCommand['command'], args: TCommbotCommand['args']) => Promise<any>;
     type TBuildSendCommandToCommbot = (sns: SNS, commbotTopicArn: string) => TSendCommandToCommbot;
@@ -11,7 +12,7 @@ export declare namespace Commbot {
         sender: string;
         botUser: string;
     };
-    const commbotCommands: ["DLQ_ALERT", "DLQ_CREATE_IGNORE_RULE_SUCCESS", "DLQ_CREATE_IGNORE_RULE_FAILURE", "DLQ_DELETE_IGNORE_RULE_SUCCESS", "DLQ_DELETE_IGNORE_RULE_FAILURE", "DLQ_REQUEUE_MESSAGE_SUCCESS", "DLQ_REQUEUE_MESSAGE_FAILURE", "DLQ_DELETE_MESSAGE_SUCCESS", "DLQ_DELETE_MESSAGE_FAILURE", "DLQ_BULK_REQUEUE_SUCCESS", "DLQ_BULK_REQUEUE_FAILURE", "DLQ_LIST_SUCCESS", "DLQ_LIST_FAILURE", "DLQ_LIST_IGNORE_RULES_SUCCESS", "DLQ_LIST_IGNORE_RULES_FAILURE"];
+    const commbotCommands: ["DLQ_ALERT", "DLQ_CREATE_IGNORE_RULE_SUCCESS", "DLQ_CREATE_IGNORE_RULE_FAILURE", "DLQ_DELETE_IGNORE_RULE_SUCCESS", "DLQ_DELETE_IGNORE_RULE_FAILURE", "DLQ_REQUEUE_MESSAGE_SUCCESS", "DLQ_REQUEUE_MESSAGE_FAILURE", "DLQ_DELETE_MESSAGE_SUCCESS", "DLQ_DELETE_MESSAGE_FAILURE", "DLQ_BULK_REQUEUE_SUCCESS", "DLQ_BULK_REQUEUE_FAILURE", "DLQ_LIST_SUCCESS", "DLQ_LIST_FAILURE", "DLQ_LIST_IGNORE_RULES_SUCCESS", "DLQ_LIST_IGNORE_RULES_FAILURE", "DLQ_RESUME_SUCCESS", "DLQ_RESUME_FAILURE", "DLQ_PAUSE_SUCCESS", "DLQ_PAUSE_FAILURE"];
     interface TCommbotCommandArgs {
         DLQ_ALERT: {
             dlqMessage: Dlq.TDlqMessage;
@@ -84,6 +85,28 @@ export declare namespace Commbot {
             processingEnvironmentId: string;
             error: string;
             slackMessageTs: string;
+        };
+        DLQ_RESUME_SUCCESS: {
+            region: Region;
+            dataEnv: DataEnv;
+            slackMessageTs: string;
+        };
+        DLQ_RESUME_FAILURE: {
+            region: Region;
+            dataEnv: DataEnv;
+            slackMessageTs: string;
+            error: string;
+        };
+        DLQ_PAUSE_SUCCESS: {
+            region: Region;
+            dataEnv: DataEnv;
+            slackMessageTs: string;
+        };
+        DLQ_PAUSE_FAILURE: {
+            region: Region;
+            dataEnv: DataEnv;
+            slackMessageTs: string;
+            error: string;
         };
     }
     type TCommbotCommandTypes = typeof commbotCommands;
