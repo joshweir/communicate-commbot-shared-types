@@ -1,19 +1,15 @@
 import { Region } from './regions-and-envs';
 export declare namespace Dlq {
-    type TDlqDynamoMessage = {
-        sentTimestamp: number;
-        envAndDlqName: string;
-        region: Region;
-        operationId?: string;
+    type TDlqMessage = {
         messageId: string;
-        ignoreRuleIds?: string[];
-        payload: string;
-    };
-    const isDlqDynamoMessage: (thing: any) => thing is TDlqDynamoMessage;
-    type TDlqMessage = TDlqDynamoMessage & {
         processingEnvironmentId: string;
         dlqName: string;
+        sentTimestamp: number;
+        region: Region;
+        operationId?: string;
+        payload: string;
     };
+    const isDlqMessage: (thing: any) => thing is TDlqMessage;
     type TDlqMessageKey = Pick<TDlqMessage, 'region' | 'dlqName' | 'processingEnvironmentId' | 'messageId'>;
 }
 //# sourceMappingURL=dlq-types.d.ts.map

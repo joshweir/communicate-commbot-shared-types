@@ -1,33 +1,26 @@
-import { Region } from './regions-and-envs';
+import { Region, regions } from './regions-and-envs';
 
 export namespace Dlq {
-  export type TDlqDynamoMessage = {
+  export type TDlqMessage = {
+    messageId: string;
+    processingEnvironmentId: string;
+    dlqName: string;
     sentTimestamp: number;
-    envAndDlqName: string;
     region: Region;
     operationId?: string;
-    messageId: string;
-    ignoreRuleIds?: string[];
     payload: string;
   };
 
-  export const isDlqDynamoMessage = (thing: any): thing is TDlqDynamoMessage =>
+  export const isDlqMessage = (thing: any): thing is TDlqMessage =>
     thing &&
-    thing.envAndDlqName &&
-    typeof thing.envAndDlqName === 'string' &&
-    thing.envAndDlqName.split('|').length === 2 &&
+    typeof thing.env === 'string' &&
+    typeof thing.dlqName === 'string' &&
+    typeof thing.messageId === 'string' &&
     typeof thing.sentTimestamp === 'number' &&
     typeof thing.region === 'string' &&
-    ['aus', 'nova'].indexOf(thing.region) > -1 &&
+    regions.indexOf(thing.region) > -1 &&
     ['string', 'undefined'].indexOf(typeof thing.operationId) > -1 &&
-    ['string', 'undefined'].indexOf(typeof thing.messageId) > -1 &&
-    (typeof thing.ignoreRuleIds === 'undefined' || thing.ignoreRuleIds instanceof Array) &&
     thing.payload;
-
-  export type TDlqMessage = TDlqDynamoMessage & {
-    processingEnvironmentId: string;
-    dlqName: string;
-  };
 
   export type TDlqMessageKey = Pick<TDlqMessage, 
     'region' | 

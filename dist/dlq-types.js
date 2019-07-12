@@ -1,17 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const regions_and_envs_1 = require("./regions-and-envs");
 var Dlq;
 (function (Dlq) {
-    Dlq.isDlqDynamoMessage = (thing) => thing &&
-        thing.envAndDlqName &&
-        typeof thing.envAndDlqName === 'string' &&
-        thing.envAndDlqName.split('|').length === 2 &&
+    Dlq.isDlqMessage = (thing) => thing &&
+        typeof thing.env === 'string' &&
+        typeof thing.dlqName === 'string' &&
+        typeof thing.messageId === 'string' &&
         typeof thing.sentTimestamp === 'number' &&
         typeof thing.region === 'string' &&
-        ['aus', 'nova'].indexOf(thing.region) > -1 &&
+        regions_and_envs_1.regions.indexOf(thing.region) > -1 &&
         ['string', 'undefined'].indexOf(typeof thing.operationId) > -1 &&
-        ['string', 'undefined'].indexOf(typeof thing.messageId) > -1 &&
-        (typeof thing.ignoreRuleIds === 'undefined' || thing.ignoreRuleIds instanceof Array) &&
         thing.payload;
 })(Dlq = exports.Dlq || (exports.Dlq = {}));
 ;
