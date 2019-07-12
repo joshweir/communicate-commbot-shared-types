@@ -2,7 +2,7 @@ import { Region } from './regions-and-envs';
 export declare namespace Dlq {
     type TDlqMessage = {
         messageId: string;
-        processingEnvironmentId: string;
+        env: string;
         dlqName: string;
         sentTimestamp: number;
         region: Region;
@@ -10,6 +10,6 @@ export declare namespace Dlq {
         payload: string;
     };
     const isDlqMessage: (thing: any) => thing is TDlqMessage;
-    type TDlqMessageKey = Pick<TDlqMessage, 'region' | 'dlqName' | 'processingEnvironmentId' | 'messageId'>;
+    type TDlqMessageKey = Pick<TDlqMessage, 'region' | 'dlqName' | 'env' | 'messageId'>;
 }
 //# sourceMappingURL=dlq-types.d.ts.map

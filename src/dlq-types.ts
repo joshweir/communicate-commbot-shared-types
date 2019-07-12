@@ -3,7 +3,7 @@ import { Region, regions } from './regions-and-envs';
 export namespace Dlq {
   export type TDlqMessage = {
     messageId: string;
-    processingEnvironmentId: string;
+    env: string;
     dlqName: string;
     sentTimestamp: number;
     region: Region;
@@ -25,7 +25,7 @@ export namespace Dlq {
   export type TDlqMessageKey = Pick<TDlqMessage, 
     'region' | 
     'dlqName' | 
-    'processingEnvironmentId' | 
+    'env' | 
     'messageId'
   >;
 };
