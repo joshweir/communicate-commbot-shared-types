@@ -1,14 +1,62 @@
 import { v4 } from 'uuid';
+import { TMatcher, isMatcher } from 'joshs-object-matcher';
 
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 
+
 export namespace DlqIgnoreRules {
-  export type TDlqIgnoreRule = string;
-
-  export type TDlqIgnoreRules = TDlqIgnoreRule[];
-
-  export const isTDlqIgnoreRules = (thing: any): thing is TDlqIgnoreRules =>
-    thing instanceof Array && [...new Set(thing.map((t) => typeof t))] === ['string'];
+  export type TStepMatcher = TMatcher & {
+    stepName: string;
+  };
+  
+  export type TModplanMatcherExpression = {
+    modInfo?: TMatcher[];
+    modSteps?: TStepMatcher[];
+  };
+  
+  export const isStepMatcher = (thing: any): thing is TStepMatcher => {
+    if (typeof thing !== 'object') {
+      throw new Error(`step matcher invalid, must be an object: ${JSON.stringify(thing)}`);
+    }
+    const { stepName, ...matcherProps } = thing;
+    if (typeof stepName !== 'string' || !stepName || !stepName.length) {
+      throw new Error(`step matcher invalid, stepName prop is required: ${JSON.stringify(thing)}`);
+    }
+    if (!isMatcher(matcherProps)) {
+      throw new Error(`step matcher invalid, matcher props invalid: ${JSON.stringify(thing)}`);
+    }
+  
+    return true;
+  };
+  
+  export const isModPlanMatcherExpression = (thing: any): thing is TModplanMatcherExpression => {
+    if (typeof thing !== 'object') return false;
+  
+    if ((!thing.modInfo || !thing.modInfo.length) && (!thing.modSteps || !thing.modSteps.length)) {
+      throw new Error(`modplanMatcherExpression must contain modInfo item(s) and/or modStep item(s)`);
+    }
+  
+    if (
+      (!thing.modInfo || thing.modInfo.filter(isMatcher).length === thing.modInfo.length) &&
+      (!thing.modSteps || thing.modSteps.filter(isStepMatcher).length === thing.modSteps.length)
+    ) {
+      return true;
+    }
+  
+    return false;
+  };
+  
+  export const isModPlanMatcherExpressions = (thing: any): thing is TModplanMatcherExpression[] => {
+    if (!(thing instanceof Array)) {
+      throw new Error(`mod plan matcher expression must be an array`);
+    }
+  
+    if (thing.length > 0 && thing.filter(isModPlanMatcherExpression).length === thing.length) {
+      return true;
+    }
+  
+    return false;
+  };
 
   export type TDlqIgnoreRuleRecord = {
     id: string;
@@ -16,10 +64,10 @@ export namespace DlqIgnoreRules {
     region: 'ALL' | 'AUS' | 'NOVA';
     dlqName: string;
     description: string;
-    ignoreRules: TDlqIgnoreRules;
+    ignoreRules: TModplanMatcherExpression[] | TMatcher[];
   };
 
-  export const isTDlqIgnoreRuleRecord = (thing: any): thing is TDlqIgnoreRuleRecord =>
+  export const isDlqIgnoreRuleRecord = (thing: any): thing is TDlqIgnoreRuleRecord =>
     typeof thing === 'object' &&
     typeof thing.id === 'string' &&
     typeof thing.env === 'string' &&
@@ -27,17 +75,17 @@ export namespace DlqIgnoreRules {
     ['AUS', 'NOVA', 'ALL'].indexOf(thing.region) > -1 &&
     typeof thing.dlqName === 'string' &&
     typeof thing.description === 'string' &&
-    isTDlqIgnoreRules(thing.ignoreRules);
-
-  export type TDlqIgnoreRuleRegExpRecord = Omit<TDlqIgnoreRuleRecord, 'ignoreRules'> & {
-    ignoreRules: RegExp[];
-  };
+    thing.ignoreRules instanceof Array &&
+    (
+      isModPlanMatcherExpressions(thing.ignoreRules) ||
+      thing.ignoreRules.filter(isMatcher).length === thing.ignoreRules.length
+    );
 
   export type TDlqIgnoreRuleRawRecord = Omit<TDlqIgnoreRuleRecord, 'ignoreRules'> & {
     ignoreRules: string;
   };
 
-  export const isTDlqIgnoreRuleRawRecord = (thing: any): thing is TDlqIgnoreRuleRawRecord =>
+  export const isDlqIgnoreRuleRawRecord = (thing: any): thing is TDlqIgnoreRuleRawRecord =>
     typeof thing === 'object' &&
     typeof thing.id === 'string' &&
     typeof thing.env === 'string' &&
@@ -70,7 +118,7 @@ export namespace DlqIgnoreRules {
         record.region = parseMultiValueIgnoreRuleField(record.region);
         record.dlqName = parseMultiValueIgnoreRuleField(record.dlqName);
 
-        if (isTDlqIgnoreRuleRawRecord(record)) {
+        if (isDlqIgnoreRuleRawRecord(record)) {
           return record;
         }
       }
@@ -102,5 +150,5 @@ export namespace DlqIgnoreRules {
     } catch(e) {}
   
     return;
-  };  
+  };
 };

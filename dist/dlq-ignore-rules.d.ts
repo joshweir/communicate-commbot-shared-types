@@ -1,24 +1,29 @@
+import { TMatcher } from 'joshs-object-matcher';
 declare type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 export declare namespace DlqIgnoreRules {
-    type TDlqIgnoreRule = string;
-    type TDlqIgnoreRules = TDlqIgnoreRule[];
-    const isTDlqIgnoreRules: (thing: any) => thing is string[];
+    type TStepMatcher = TMatcher & {
+        stepName: string;
+    };
+    type TModplanMatcherExpression = {
+        modInfo?: TMatcher[];
+        modSteps?: TStepMatcher[];
+    };
+    const isStepMatcher: (thing: any) => thing is TStepMatcher;
+    const isModPlanMatcherExpression: (thing: any) => thing is TModplanMatcherExpression;
+    const isModPlanMatcherExpressions: (thing: any) => thing is TModplanMatcherExpression[];
     type TDlqIgnoreRuleRecord = {
         id: string;
         env: string;
         region: 'ALL' | 'AUS' | 'NOVA';
         dlqName: string;
         description: string;
-        ignoreRules: TDlqIgnoreRules;
+        ignoreRules: TModplanMatcherExpression[] | TMatcher[];
     };
-    const isTDlqIgnoreRuleRecord: (thing: any) => thing is TDlqIgnoreRuleRecord;
-    type TDlqIgnoreRuleRegExpRecord = Omit<TDlqIgnoreRuleRecord, 'ignoreRules'> & {
-        ignoreRules: RegExp[];
-    };
+    const isDlqIgnoreRuleRecord: (thing: any) => thing is TDlqIgnoreRuleRecord;
     type TDlqIgnoreRuleRawRecord = Omit<TDlqIgnoreRuleRecord, 'ignoreRules'> & {
         ignoreRules: string;
     };
-    const isTDlqIgnoreRuleRawRecord: (thing: any) => thing is TDlqIgnoreRuleRawRecord;
+    const isDlqIgnoreRuleRawRecord: (thing: any) => thing is TDlqIgnoreRuleRawRecord;
     const parseMultiValueIgnoreRuleField: (input: string) => string;
     const parseDlqIgnoreRuleRawRecord: (input: string) => TDlqIgnoreRuleRawRecord | undefined;
     type TIgnoreRuleKey = Pick<TDlqIgnoreRuleRecord, 'id' | 'region' | 'env'>;
