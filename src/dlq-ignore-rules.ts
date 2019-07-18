@@ -64,7 +64,7 @@ export namespace DlqIgnoreRules {
     region: 'ALL' | 'AUS' | 'NOVA';
     dlqName: string;
     description: string;
-    ignoreRules: TModplanMatcherExpression[] | TMatcher[];
+    ignoreRules: (TModplanMatcherExpression | TMatcher)[];
   };
 
   export const isDlqIgnoreRuleRecord = (thing: any): thing is TDlqIgnoreRuleRecord =>
