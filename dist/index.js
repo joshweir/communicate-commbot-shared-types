@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __export(require("./dlq-ignore-rules"));
 __export(require("./commbot-commands-types"));
 __export(require("./send-command-to-commbot"));
-__export(require("./interrogosaurus-commands-types"));
+__export(require("./ringmaster-commands-types"));
 __export(require("./dlq-types"));
 __export(require("./regions-and-envs"));
 //# sourceMappingURL=index.js.map
