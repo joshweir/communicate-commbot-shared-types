@@ -10,7 +10,7 @@ export namespace Commbot {
     args: TCommbotCommand['args'],
   ) => Promise<any>;
 
-  export type TBuildSendCommandToCommbot = (sns: SNS, commbotTopicArn: string) => TSendCommandToCommbot;
+  export type TBuildSendCommandToCommbot = (sns: SNS, commbotTopicArn: string, localProcessingEnv?: string) => TSendCommandToCommbot;
 
   export type TSlackContext = {
     client: WebClient;

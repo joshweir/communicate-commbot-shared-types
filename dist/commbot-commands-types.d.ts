@@ -5,7 +5,7 @@ import { Dlq } from './dlq-types';
 import { DataEnv, Region } from './regions-and-envs';
 export declare namespace Commbot {
     type TSendCommandToCommbot = (command: TCommbotCommand['command'], args: TCommbotCommand['args']) => Promise<any>;
-    type TBuildSendCommandToCommbot = (sns: SNS, commbotTopicArn: string) => TSendCommandToCommbot;
+    type TBuildSendCommandToCommbot = (sns: SNS, commbotTopicArn: string, localProcessingEnv?: string) => TSendCommandToCommbot;
     type TSlackContext = {
         client: WebClient;
         channel: string;
