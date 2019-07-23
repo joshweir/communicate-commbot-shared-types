@@ -122,18 +122,23 @@ export namespace Commbot {
 
     DLQ_BULK_REQUEUE_SUCCESS: {
       dlqName: string;
+      region: Region;
+      dataEnv: DataEnv;
       content: string;
       slackMessageTs: string;
     };
 
     DLQ_BULK_REQUEUE_FAILURE: {
       dlqName: string;
+      region: Region;
+      dataEnv: DataEnv;
       error: string;
       slackMessageTs: string;
     };
 
     DLQ_LIST_IGNORE_RULES_SUCCESS: {
       dlqName: string;
+      region: Region;
       processingEnvironmentId: string;
       content: string;
       slackMessageTs: string;
@@ -141,6 +146,7 @@ export namespace Commbot {
 
     DLQ_LIST_IGNORE_RULES_FAILURE: {
       dlqName: string;
+      region: Region;
       processingEnvironmentId: string;
       error: string;
       slackMessageTs: string;
@@ -175,6 +181,8 @@ export namespace Commbot {
     DLQ_COUNT_SUCCESS: {
       dlqName: string;
       n: number;
+      region: Region;
+      dataEnv: DataEnv;
       content: string;
       warning?: string;
       slackMessageTs: string;
@@ -183,42 +191,56 @@ export namespace Commbot {
     DLQ_COUNT_FAILURE: {
       dlqName: string;
       n: number;
+      region: Region;
+      dataEnv: DataEnv;
       error: string;
       slackMessageTs: string;
     };
 
     DLQ_HEAD_SUCCESS: {
       dlqName: string;
+      region: Region;
+      dataEnv: DataEnv;
       content: string;
       slackMessageTs: string;
     };
 
     DLQ_HEAD_FAILURE: {
       dlqName: string;
+      region: Region;
+      dataEnv: DataEnv;
       error: string;
       slackMessageTs: string;
     };
 
     DLQ_TAIL_SUCCESS: {
       dlqName: string;
+      region: Region;
+      dataEnv: DataEnv;
       content: string;
       slackMessageTs: string;
     };
 
     DLQ_TAIL_FAILURE: {
       dlqName: string;
+      region: Region;
+      dataEnv: DataEnv;
       error: string;
       slackMessageTs: string;
     };
 
     DLQ_PICK_SUCCESS: {
       operationIdOrMessageId: string;
+      region: Region;
+      dataEnv: DataEnv;
       content: string;
       slackMessageTs: string;
     };
 
     DLQ_PICK_FAILURE: {
       operationIdOrMessageId: string;
+      region: Region;
+      dataEnv: DataEnv;
       error: string;
       slackMessageTs: string;
     };
