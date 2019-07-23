@@ -31,14 +31,20 @@ export namespace Commbot {
     'DLQ_DELETE_MESSAGE_FAILURE',
     'DLQ_BULK_REQUEUE_SUCCESS',
     'DLQ_BULK_REQUEUE_FAILURE',
-    'DLQ_LIST_SUCCESS',
-    'DLQ_LIST_FAILURE',
     'DLQ_LIST_IGNORE_RULES_SUCCESS',
     'DLQ_LIST_IGNORE_RULES_FAILURE',
     'DLQ_RESUME_SUCCESS',
     'DLQ_RESUME_FAILURE',
     'DLQ_PAUSE_SUCCESS',
     'DLQ_PAUSE_FAILURE',
+    'DLQ_COUNT_SUCCESS',
+    'DLQ_COUNT_FAILURE',
+    'DLQ_HEAD_SUCCESS',
+    'DLQ_HEAD_FAILURE',
+    'DLQ_TAIL_SUCCESS',
+    'DLQ_TAIL_FAILURE',
+    'DLQ_PICK_SUCCESS',
+    'DLQ_PICK_FAILURE',
   ] as [
     'DLQ_ALERT',
     'DLQ_CREATE_IGNORE_RULE_SUCCESS',
@@ -51,14 +57,20 @@ export namespace Commbot {
     'DLQ_DELETE_MESSAGE_FAILURE',
     'DLQ_BULK_REQUEUE_SUCCESS',
     'DLQ_BULK_REQUEUE_FAILURE',
-    'DLQ_LIST_SUCCESS',
-    'DLQ_LIST_FAILURE',
     'DLQ_LIST_IGNORE_RULES_SUCCESS',
     'DLQ_LIST_IGNORE_RULES_FAILURE',
     'DLQ_RESUME_SUCCESS',
     'DLQ_RESUME_FAILURE',
     'DLQ_PAUSE_SUCCESS',
     'DLQ_PAUSE_FAILURE',
+    'DLQ_COUNT_SUCCESS',
+    'DLQ_COUNT_FAILURE',
+    'DLQ_HEAD_SUCCESS',
+    'DLQ_HEAD_FAILURE',
+    'DLQ_TAIL_SUCCESS',
+    'DLQ_TAIL_FAILURE',
+    'DLQ_PICK_SUCCESS',
+    'DLQ_PICK_FAILURE',
   ];
   
   export interface TCommbotCommandArgs {
@@ -121,20 +133,6 @@ export namespace Commbot {
       slackMessageTs: string;
     };
 
-    DLQ_LIST_SUCCESS: {
-      dlqName: string;
-      processingEnvironmentId: string;
-      content: string;
-      slackMessageTs: string;
-    };
-
-    DLQ_LIST_FAILURE: {
-      dlqName: string;
-      processingEnvironmentId: string;
-      error: string;
-      slackMessageTs: string;
-    };
-
     DLQ_LIST_IGNORE_RULES_SUCCESS: {
       dlqName: string;
       processingEnvironmentId: string;
@@ -173,6 +171,57 @@ export namespace Commbot {
       dataEnv: DataEnv;
       slackMessageTs: string;
       error: string;
+    };
+
+    DLQ_COUNT_SUCCESS: {
+      dlqName: string;
+      n: number;
+      content: string;
+      warning?: string;
+      slackMessageTs: string;
+    };
+
+    DLQ_COUNT_FAILURE: {
+      dlqName: string;
+      n: number;
+      error: string;
+      slackMessageTs: string;
+    };
+
+    DLQ_HEAD_SUCCESS: {
+      dlqName: string;
+      content: string;
+      slackMessageTs: string;
+    };
+
+    DLQ_HEAD_FAILURE: {
+      dlqName: string;
+      error: string;
+      slackMessageTs: string;
+    };
+
+    DLQ_TAIL_SUCCESS: {
+      dlqName: string;
+      content: string;
+      slackMessageTs: string;
+    };
+
+    DLQ_TAIL_FAILURE: {
+      dlqName: string;
+      error: string;
+      slackMessageTs: string;
+    };
+
+    DLQ_PICK_SUCCESS: {
+      operationIdOrMessageId: string;
+      content: string;
+      slackMessageTs: string;
+    };
+
+    DLQ_PICK_FAILURE: {
+      operationIdOrMessageId: string;
+      error: string;
+      slackMessageTs: string;
     };
   };
   

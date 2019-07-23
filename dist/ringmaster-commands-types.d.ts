@@ -1,7 +1,7 @@
 import { Dlq } from './dlq-types';
 import { Commbot } from './commbot-commands-types';
 import { DlqIgnoreRules } from './dlq-ignore-rules';
-export declare const ringmasterCommands: ["DLQ_CREATE_IGNORE_RULE", "DLQ_DELETE_IGNORE_RULE", "DLQ_DELETE_MESSAGE", "DLQ_REQUEUE_MESSAGE", "DLQ_BULK_REQUEUE", "DLQ_LIST", "DLQ_LIST_IGNORE_RULES", "DLQ_RESUME", "DLQ_PAUSE"];
+export declare const ringmasterCommands: ["DLQ_CREATE_IGNORE_RULE", "DLQ_DELETE_IGNORE_RULE", "DLQ_DELETE_MESSAGE", "DLQ_REQUEUE_MESSAGE", "DLQ_BULK_REQUEUE", "DLQ_LIST_IGNORE_RULES", "DLQ_RESUME", "DLQ_PAUSE", "DLQ_COUNT", "DLQ_HEAD", "DLQ_TAIL", "DLQ_PICK"];
 declare type TRingmasterCommandArgsCommon = {
     slackMessageTs: string;
 };
@@ -16,16 +16,25 @@ export interface TRingmasterCommandArgs {
         dlqName: string;
         processingEnvironmentId: string;
     };
-    DLQ_LIST: TRingmasterCommandArgsCommon & {
-        dlqName: string;
-        processingEnvironmentId: string;
-    };
     DLQ_LIST_IGNORE_RULES: TRingmasterCommandArgsCommon & {
         dlqName: string;
         processingEnvironmentId: string;
     };
     DLQ_RESUME: TRingmasterCommandArgsCommon;
     DLQ_PAUSE: TRingmasterCommandArgsCommon;
+    DLQ_COUNT: TRingmasterCommandArgsCommon & {
+        dlqName: string;
+        n: number;
+    };
+    DLQ_HEAD: TRingmasterCommandArgsCommon & {
+        dlqName: string;
+    };
+    DLQ_TAIL: TRingmasterCommandArgsCommon & {
+        dlqName: string;
+    };
+    DLQ_PICK: TRingmasterCommandArgsCommon & {
+        operationIdOrMessageId: string;
+    };
 }
 export declare type TRingmasterCommandTypes = typeof ringmasterCommands;
 export declare type TRingmasterCommandType = TRingmasterCommandTypes[number];

@@ -8,20 +8,26 @@ export const ringmasterCommands = [
   'DLQ_DELETE_MESSAGE',
   'DLQ_REQUEUE_MESSAGE',
   'DLQ_BULK_REQUEUE',
-  'DLQ_LIST',
   'DLQ_LIST_IGNORE_RULES',
   'DLQ_RESUME',
   'DLQ_PAUSE',
+  'DLQ_COUNT',
+  'DLQ_HEAD',
+  'DLQ_TAIL',
+  'DLQ_PICK',
 ] as [
   'DLQ_CREATE_IGNORE_RULE',
   'DLQ_DELETE_IGNORE_RULE',
   'DLQ_DELETE_MESSAGE',
   'DLQ_REQUEUE_MESSAGE',
   'DLQ_BULK_REQUEUE',
-  'DLQ_LIST',
   'DLQ_LIST_IGNORE_RULES',
   'DLQ_RESUME',
   'DLQ_PAUSE',
+  'DLQ_COUNT',
+  'DLQ_HEAD',
+  'DLQ_TAIL',
+  'DLQ_PICK',
 ];
 
 type TRingmasterCommandArgsCommon = {
@@ -44,11 +50,6 @@ export interface TRingmasterCommandArgs {
     processingEnvironmentId: string;
   };
 
-  DLQ_LIST: TRingmasterCommandArgsCommon & {
-    dlqName: string;
-    processingEnvironmentId: string;
-  };
-
   DLQ_LIST_IGNORE_RULES: TRingmasterCommandArgsCommon & {
     dlqName: string;
     processingEnvironmentId: string;
@@ -57,6 +58,23 @@ export interface TRingmasterCommandArgs {
   DLQ_RESUME: TRingmasterCommandArgsCommon;
 
   DLQ_PAUSE: TRingmasterCommandArgsCommon;
+
+  DLQ_COUNT: TRingmasterCommandArgsCommon & {
+    dlqName: string;
+    n: number;
+  };
+
+  DLQ_HEAD: TRingmasterCommandArgsCommon & {
+    dlqName: string;
+  };
+
+  DLQ_TAIL: TRingmasterCommandArgsCommon & {
+    dlqName: string;
+  };
+
+  DLQ_PICK: TRingmasterCommandArgsCommon & {
+    operationIdOrMessageId: string;
+  };
 }
 
 export type TRingmasterCommandTypes = typeof ringmasterCommands;
