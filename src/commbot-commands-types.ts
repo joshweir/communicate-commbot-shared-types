@@ -122,13 +122,12 @@ export namespace Commbot {
 
     DLQ_BULK_REQUEUE_SUCCESS: {
       dlqName: string;
-      processingEnvironmentId: string;
+      content: string;
       slackMessageTs: string;
     };
 
     DLQ_BULK_REQUEUE_FAILURE: {
       dlqName: string;
-      processingEnvironmentId: string;
       error: string;
       slackMessageTs: string;
     };

@@ -14,7 +14,7 @@ export interface TRingmasterCommandArgs {
     DLQ_REQUEUE_MESSAGE: TRingmasterCommandArgsCommon & Dlq.TDlqMessageKey;
     DLQ_BULK_REQUEUE: TRingmasterCommandArgsCommon & {
         dlqName: string;
-        processingEnvironmentId: string;
+        n?: number;
     };
     DLQ_LIST_IGNORE_RULES: TRingmasterCommandArgsCommon & {
         dlqName: string;
