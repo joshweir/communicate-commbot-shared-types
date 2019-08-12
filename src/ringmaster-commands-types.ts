@@ -15,6 +15,11 @@ export const ringmasterCommands = [
   'DLQ_HEAD',
   'DLQ_TAIL',
   'DLQ_PICK',
+
+  'QDB_PAUSE',
+  'QDB_RESUME',
+  'QDB_RESTART',
+  'QDB_WARM_TO_HOT',
 ] as [
   'DLQ_CREATE_IGNORE_RULE',
   'DLQ_DELETE_IGNORE_RULE',
@@ -28,10 +33,19 @@ export const ringmasterCommands = [
   'DLQ_HEAD',
   'DLQ_TAIL',
   'DLQ_PICK',
+
+  'QDB_PAUSE',
+  'QDB_RESUME',
+  'QDB_RESTART',
+  'QDB_WARM_TO_HOT',
 ];
 
 type TRingmasterCommandArgsCommon = {
   slackMessageTs: string;
+};
+
+type TQDBCommandArgsCommon = TRingmasterCommandArgsCommon & {
+  qdbName: string;
 };
 
 export interface TRingmasterCommandArgs {
@@ -75,6 +89,11 @@ export interface TRingmasterCommandArgs {
   DLQ_PICK: TRingmasterCommandArgsCommon & {
     operationIdOrMessageId: string;
   };
+
+  QDB_PAUSE: TQDBCommandArgsCommon;
+  QDB_RESUME: TQDBCommandArgsCommon;
+  QDB_RESTART: TQDBCommandArgsCommon;
+  QDB_WARM_TO_HOT: TQDBCommandArgsCommon;
 }
 
 export type TRingmasterCommandTypes = typeof ringmasterCommands;

@@ -28,6 +28,16 @@ var Commbot;
         'DLQ_TAIL_FAILURE',
         'DLQ_PICK_SUCCESS',
         'DLQ_PICK_FAILURE',
+        'QDB_COLD_TO_WARM_ALERT',
+        'QDB_WARM_UP_TO_DATE',
+        'QDB_PAUSE_SUCCESS',
+        'QDB_PAUSE_FAILURE',
+        'QDB_RESUME_SUCCESS',
+        'QDB_RESUME_FAILURE',
+        'QDB_RESTART_SUCCESS',
+        'QDB_RESTART_FAILURE',
+        'QDB_WARM_TO_HOT_SUCCESS',
+        'QDB_WARM_TO_HOT_FAILURE',
     ];
     ;
     Commbot.isCommbotCommand = (thing) => !!thing && !!thing.internalCommand && Commbot.commbotCommands.indexOf(thing.command) !== -1;
