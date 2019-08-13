@@ -30,6 +30,7 @@ var Commbot;
         'DLQ_PICK_FAILURE',
         'QDB_COLD_TO_WARM_ALERT',
         'QDB_WARM_UP_TO_DATE',
+        'QDB_ALERT',
         'QDB_PAUSE_SUCCESS',
         'QDB_PAUSE_FAILURE',
         'QDB_RESUME_SUCCESS',

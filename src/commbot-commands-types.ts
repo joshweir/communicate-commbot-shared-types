@@ -48,6 +48,7 @@ export namespace Commbot {
 
     'QDB_COLD_TO_WARM_ALERT',
     'QDB_WARM_UP_TO_DATE',
+    'QDB_ALERT',
     'QDB_PAUSE_SUCCESS',
     'QDB_PAUSE_FAILURE',
     'QDB_RESUME_SUCCESS',
@@ -85,6 +86,7 @@ export namespace Commbot {
 
     'QDB_COLD_TO_WARM_ALERT',
     'QDB_WARM_UP_TO_DATE',
+    'QDB_ALERT',
     'QDB_PAUSE_SUCCESS',
     'QDB_PAUSE_FAILURE',
     'QDB_RESUME_SUCCESS',
@@ -247,6 +249,10 @@ export namespace Commbot {
     };
 
     QDB_WARM_UP_TO_DATE: TQDBCommandArgsCommon;
+
+    QDB_ALERT: TQDBCommandArgsCommon & {
+      content: string;
+    }
 
     QDB_PAUSE_SUCCESS: TQDBCommandArgsCommon & TWithOrigSlackMsg;
 
