@@ -1,6 +1,6 @@
 {
   "name": "commbot-shared-types",
-  "version": "1.0.18",
+  "version": "1.0.19",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -10,9 +10,12 @@
   },
   "author": "Josh Weir",
   "license": "ISC",
+  "peerDependencies": {
+    "aws-sdk": "^2.373.0"
+  },
   "dependencies": {
     "@types/uuid": "^3.4.2",
-    "aws-sdk": "2.373.0",
+    "aws-sdk": "^2.508.0",
     "joshs-object-matcher": "^1.0.0",
     "uuid": "^3.1.0"
   },
