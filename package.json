@@ -16,7 +16,6 @@
   "dependencies": {
     "@types/uuid": "^3.4.2",
     "aws-sdk": "^2.508.0",
-    "jest": "^24.8.0",
     "joshs-object-matcher": "^1.0.0",
     "uuid": "^3.1.0"
   },
@@ -25,6 +24,7 @@
     "@babel/preset-typescript": "^7.3.3",
     "@slack/web-api": "^5.0.1",
     "@types/aws-lambda": "^8.10.27",
+    "jest": "^24.8.0",
     "typescript": "~3.5.1"
   }
 }
