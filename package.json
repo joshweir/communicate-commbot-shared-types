@@ -1,6 +1,6 @@
 {
   "name": "commbot-shared-types",
-  "version": "1.0.25",
+  "version": "1.0.26",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -15,7 +15,6 @@
   },
   "dependencies": {
     "@types/uuid": "^3.4.2",
-    "aws-sdk": "^2.508.0",
     "joshs-object-matcher": "^1.0.0",
     "uuid": "^3.1.0"
   },
