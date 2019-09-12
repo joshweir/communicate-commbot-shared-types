@@ -1,6 +1,6 @@
 {
   "name": "commbot-shared-types",
-  "version": "1.0.27",
+  "version": "1.0.28",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -23,6 +23,7 @@
     "@babel/preset-typescript": "^7.3.3",
     "@slack/web-api": "^5.0.1",
     "@types/aws-lambda": "^8.10.27",
+    "aws-sdk": "^2.373.0",
     "jest": "^24.8.0",
     "typescript": "~3.5.1"
   }

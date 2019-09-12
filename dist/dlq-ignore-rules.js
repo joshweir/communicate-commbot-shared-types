@@ -32,7 +32,7 @@ var DlqIgnoreRules;
         if (typeof thing !== 'object')
             return false;
         if ((!thing.modInfo || !thing.modInfo.length) && (!thing.modSteps || !thing.modSteps.length)) {
-            throw new Error(`modplanMatcherExpression must contain modInfo item(s) and/or modStep item(s)`);
+            throw new Error(`modplanMatcherExpression must contain modInfo item(s) and/or modStep item(s), got: ${JSON.stringify(thing, null, 2)}`);
         }
         if ((!thing.modInfo || thing.modInfo.filter(joshs_object_matcher_1.isMatcher).length === thing.modInfo.length) &&
             (!thing.modSteps || thing.modSteps.filter(DlqIgnoreRules.isStepMatcher).length === thing.modSteps.length)) {
