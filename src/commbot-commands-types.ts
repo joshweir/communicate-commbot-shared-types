@@ -20,6 +20,7 @@ export namespace Commbot {
   };
 
   export const commbotCommands = [
+    'GENERIC_ALERT',
     'DLQ_ALERT',
     'DLQ_CREATE_IGNORE_RULE_SUCCESS',
     'DLQ_CREATE_IGNORE_RULE_FAILURE',
@@ -58,6 +59,7 @@ export namespace Commbot {
     'QDB_WARM_TO_HOT_SUCCESS',
     'QDB_WARM_TO_HOT_FAILURE',
   ] as [
+    'GENERIC_ALERT',
     'DLQ_ALERT',
     'DLQ_CREATE_IGNORE_RULE_SUCCESS',
     'DLQ_CREATE_IGNORE_RULE_FAILURE',
@@ -110,6 +112,12 @@ export namespace Commbot {
   }
 
   export interface TCommbotCommandArgs {
+    GENERIC_ALERT: {
+      region: Region;
+      dataEnv: DataEnv;
+      content: string;
+    };
+
     DLQ_ALERT: {
       dlqMessage: Dlq.TDlqMessage;
     };
