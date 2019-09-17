@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var Commbot;
 (function (Commbot) {
     Commbot.commbotCommands = [
+        'GENERIC_ALERT',
         'DLQ_ALERT',
         'DLQ_CREATE_IGNORE_RULE_SUCCESS',
         'DLQ_CREATE_IGNORE_RULE_FAILURE',
