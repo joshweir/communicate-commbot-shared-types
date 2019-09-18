@@ -22,10 +22,12 @@ export declare namespace Commbot {
     type TQDBCommandArgsCommon = {
         qdbName: string;
     };
+    type TWithRegionAndDataEnv = {
+        region: Region;
+        dataEnv: DataEnv;
+    };
     interface TCommbotCommandArgs {
-        GENERIC_ALERT: {
-            region: Region;
-            dataEnv: DataEnv;
+        GENERIC_ALERT: TWithRegionAndDataEnv & {
             content: string;
         };
         DLQ_ALERT: {
@@ -51,16 +53,12 @@ export declare namespace Commbot {
         DLQ_DELETE_MESSAGE_FAILURE: TFailureCommon & TWithOrigSlackMsg & {
             dlqMessageKey: Dlq.TDlqMessageKey;
         };
-        DLQ_BULK_REQUEUE_SUCCESS: TWithOrigSlackMsg & {
+        DLQ_BULK_REQUEUE_SUCCESS: TWithOrigSlackMsg & TWithRegionAndDataEnv & {
             dlqName: string;
-            region: Region;
-            dataEnv: DataEnv;
             content: string;
         };
-        DLQ_BULK_REQUEUE_FAILURE: TFailureCommon & TWithOrigSlackMsg & {
+        DLQ_BULK_REQUEUE_FAILURE: TFailureCommon & TWithOrigSlackMsg & TWithRegionAndDataEnv & {
             dlqName: string;
-            region: Region;
-            dataEnv: DataEnv;
         };
         DLQ_LIST_IGNORE_RULES_SUCCESS: TWithOrigSlackMsg & {
             dlqName: string;
@@ -73,68 +71,40 @@ export declare namespace Commbot {
             region: Region;
             processingEnvironmentId: string;
         };
-        DLQ_RESUME_SUCCESS: TWithOrigSlackMsg & {
-            region: Region;
-            dataEnv: DataEnv;
-        };
-        DLQ_RESUME_FAILURE: TFailureCommon & TWithOrigSlackMsg & {
-            region: Region;
-            dataEnv: DataEnv;
-        };
-        DLQ_PAUSE_SUCCESS: TWithOrigSlackMsg & {
-            region: Region;
-            dataEnv: DataEnv;
-        };
-        DLQ_PAUSE_FAILURE: TFailureCommon & TWithOrigSlackMsg & {
-            region: Region;
-            dataEnv: DataEnv;
-        };
-        DLQ_COUNT_SUCCESS: TWithOrigSlackMsg & {
+        DLQ_RESUME_SUCCESS: TWithOrigSlackMsg & TWithRegionAndDataEnv;
+        DLQ_RESUME_FAILURE: TFailureCommon & TWithOrigSlackMsg & TWithRegionAndDataEnv;
+        DLQ_PAUSE_SUCCESS: TWithOrigSlackMsg & TWithRegionAndDataEnv;
+        DLQ_PAUSE_FAILURE: TFailureCommon & TWithOrigSlackMsg & TWithRegionAndDataEnv;
+        DLQ_COUNT_SUCCESS: TWithOrigSlackMsg & TWithRegionAndDataEnv & {
             dlqName: string;
             n: number;
-            region: Region;
-            dataEnv: DataEnv;
             content: string;
             warning?: string;
         };
-        DLQ_COUNT_FAILURE: TFailureCommon & TWithOrigSlackMsg & {
+        DLQ_COUNT_FAILURE: TFailureCommon & TWithOrigSlackMsg & TWithRegionAndDataEnv & {
             dlqName: string;
             n: number;
-            region: Region;
-            dataEnv: DataEnv;
         };
-        DLQ_HEAD_SUCCESS: TWithOrigSlackMsg & {
+        DLQ_HEAD_SUCCESS: TWithOrigSlackMsg & TWithRegionAndDataEnv & {
             dlqName: string;
-            region: Region;
-            dataEnv: DataEnv;
             content: string;
         };
-        DLQ_HEAD_FAILURE: TFailureCommon & TWithOrigSlackMsg & {
+        DLQ_HEAD_FAILURE: TFailureCommon & TWithOrigSlackMsg & TWithRegionAndDataEnv & {
             dlqName: string;
-            region: Region;
-            dataEnv: DataEnv;
         };
-        DLQ_TAIL_SUCCESS: TWithOrigSlackMsg & {
+        DLQ_TAIL_SUCCESS: TWithOrigSlackMsg & TWithRegionAndDataEnv & {
             dlqName: string;
-            region: Region;
-            dataEnv: DataEnv;
             content: string;
         };
-        DLQ_TAIL_FAILURE: TFailureCommon & TWithOrigSlackMsg & {
+        DLQ_TAIL_FAILURE: TFailureCommon & TWithOrigSlackMsg & TWithRegionAndDataEnv & {
             dlqName: string;
-            region: Region;
-            dataEnv: DataEnv;
         };
-        DLQ_PICK_SUCCESS: TWithOrigSlackMsg & {
+        DLQ_PICK_SUCCESS: TWithOrigSlackMsg & TWithRegionAndDataEnv & {
             operationIdOrMessageId: string;
-            region: Region;
-            dataEnv: DataEnv;
             content: string;
         };
-        DLQ_PICK_FAILURE: TFailureCommon & TWithOrigSlackMsg & {
+        DLQ_PICK_FAILURE: TFailureCommon & TWithOrigSlackMsg & TWithRegionAndDataEnv & {
             operationIdOrMessageId: string;
-            region: Region;
-            dataEnv: DataEnv;
         };
         QDB_COLD_TO_WARM_ALERT: TQDBCommandArgsCommon & {
             iteratorAge: number;
@@ -151,8 +121,8 @@ export declare namespace Commbot {
         QDB_RESTART_FAILURE: TQDBCommandArgsCommon & TWithOrigSlackMsg & TFailureCommon;
         QDB_WARM_TO_HOT_SUCCESS: TQDBCommandArgsCommon & TWithOrigSlackMsg;
         QDB_WARM_TO_HOT_FAILURE: TQDBCommandArgsCommon & TWithOrigSlackMsg & TFailureCommon;
-        DATAMOD_SUCCESS: TWithOrigSlackMsg;
-        DATAMOD_FAILURE: TWithOrigSlackMsg & TFailureCommon;
+        DATAMOD_SUCCESS: TWithOrigSlackMsg & TWithRegionAndDataEnv;
+        DATAMOD_FAILURE: TWithOrigSlackMsg & TWithRegionAndDataEnv & TFailureCommon;
     }
     type TCommbotCommandTypes = typeof commbotCommands;
     type TCommbotCommandType = TCommbotCommandTypes[number];
