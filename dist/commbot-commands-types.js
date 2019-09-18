@@ -40,6 +40,8 @@ var Commbot;
         'QDB_RESTART_FAILURE',
         'QDB_WARM_TO_HOT_SUCCESS',
         'QDB_WARM_TO_HOT_FAILURE',
+        'DATAMOD_SUCCESS',
+        'DATAMOD_FAILURE',
     ];
     ;
     Commbot.isCommbotCommand = (thing) => !!thing && !!thing.internalCommand && Commbot.commbotCommands.indexOf(thing.command) !== -1;

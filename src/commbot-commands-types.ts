@@ -58,6 +58,9 @@ export namespace Commbot {
     'QDB_RESTART_FAILURE',
     'QDB_WARM_TO_HOT_SUCCESS',
     'QDB_WARM_TO_HOT_FAILURE',
+
+    'DATAMOD_SUCCESS',
+    'DATAMOD_FAILURE',
   ] as [
     'GENERIC_ALERT',
     'DLQ_ALERT',
@@ -97,6 +100,9 @@ export namespace Commbot {
     'QDB_RESTART_FAILURE',
     'QDB_WARM_TO_HOT_SUCCESS',
     'QDB_WARM_TO_HOT_FAILURE',
+
+    'DATAMOD_SUCCESS',
+    'DATAMOD_FAILURE',
   ];
   
   type TWithOrigSlackMsg = {
@@ -271,6 +277,9 @@ export namespace Commbot {
     QDB_RESTART_FAILURE: TQDBCommandArgsCommon & TWithOrigSlackMsg & TFailureCommon;
     QDB_WARM_TO_HOT_SUCCESS: TQDBCommandArgsCommon & TWithOrigSlackMsg;
     QDB_WARM_TO_HOT_FAILURE: TQDBCommandArgsCommon & TWithOrigSlackMsg & TFailureCommon;
+
+    DATAMOD_SUCCESS: TWithOrigSlackMsg;
+    DATAMOD_FAILURE: TWithOrigSlackMsg & TFailureCommon;
   };
   
   export type TCommbotCommandTypes = typeof commbotCommands;

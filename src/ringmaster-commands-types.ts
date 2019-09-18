@@ -20,6 +20,8 @@ export const ringmasterCommands = [
   'QDB_RESUME',
   'QDB_RESTART',
   'QDB_WARM_TO_HOT',
+
+  'DATAMOD',
 ] as [
   'DLQ_CREATE_IGNORE_RULE',
   'DLQ_DELETE_IGNORE_RULE',
@@ -38,6 +40,8 @@ export const ringmasterCommands = [
   'QDB_RESUME',
   'QDB_RESTART',
   'QDB_WARM_TO_HOT',
+
+  'DATAMOD',
 ];
 
 type TRingmasterCommandArgsCommon = {
@@ -94,6 +98,10 @@ export interface TRingmasterCommandArgs {
   QDB_RESUME: TQDBCommandArgsCommon;
   QDB_RESTART: TQDBCommandArgsCommon;
   QDB_WARM_TO_HOT: TQDBCommandArgsCommon;
+
+  DATAMOD: TRingmasterCommandArgsCommon & {
+    dataMods: string;
+  };
 }
 
 export type TRingmasterCommandTypes = typeof ringmasterCommands;
