@@ -15,6 +15,9 @@ export const ringmasterCommands = [
   'DLQ_HEAD',
   'DLQ_TAIL',
   'DLQ_PICK',
+  'DLQ_CREATE_TRASH_RULE',
+  'DLQ_DELETE_TRASH_RULE',
+  'DLQ_LIST_TRASH_RULES',
 
   'QDB_PAUSE',
   'QDB_RESUME',
@@ -35,6 +38,9 @@ export const ringmasterCommands = [
   'DLQ_HEAD',
   'DLQ_TAIL',
   'DLQ_PICK',
+  'DLQ_CREATE_TRASH_RULE',
+  'DLQ_DELETE_TRASH_RULE',
+  'DLQ_LIST_TRASH_RULES',
 
   'QDB_PAUSE',
   'QDB_RESUME',
@@ -92,6 +98,17 @@ export interface TRingmasterCommandArgs {
 
   DLQ_PICK: TRingmasterCommandArgsCommon & {
     operationIdOrMessageId: string;
+  };
+
+  DLQ_CREATE_TRASH_RULE: TRingmasterCommandArgsCommon & {
+    dlqIgnoreRuleRawRecord: DlqIgnoreRules.TDlqIgnoreRuleRawRecord;
+  };
+
+  DLQ_DELETE_TRASH_RULE: TRingmasterCommandArgsCommon & DlqIgnoreRules.TIgnoreRuleKey;
+
+  DLQ_LIST_TRASH_RULES: TRingmasterCommandArgsCommon & {
+    dlqName: string;
+    processingEnvironmentId: string;
   };
 
   QDB_PAUSE: TQDBCommandArgsCommon;

@@ -46,6 +46,12 @@ export namespace Commbot {
     'DLQ_TAIL_FAILURE',
     'DLQ_PICK_SUCCESS',
     'DLQ_PICK_FAILURE',
+    'DLQ_CREATE_TRASH_RULE_SUCCESS',
+    'DLQ_CREATE_TRASH_RULE_FAILURE',
+    'DLQ_DELETE_TRASH_RULE_SUCCESS',
+    'DLQ_DELETE_TRASH_RULE_FAILURE',
+    'DLQ_LIST_TRASH_RULES_SUCCESS',
+    'DLQ_LIST_TRASH_RULES_FAILURE',
 
     'QDB_COLD_TO_WARM_ALERT',
     'QDB_WARM_UP_TO_DATE',
@@ -88,6 +94,12 @@ export namespace Commbot {
     'DLQ_TAIL_FAILURE',
     'DLQ_PICK_SUCCESS',
     'DLQ_PICK_FAILURE',
+    'DLQ_CREATE_TRASH_RULE_SUCCESS',
+    'DLQ_CREATE_TRASH_RULE_FAILURE',
+    'DLQ_DELETE_TRASH_RULE_SUCCESS',
+    'DLQ_DELETE_TRASH_RULE_FAILURE',
+    'DLQ_LIST_TRASH_RULES_SUCCESS',
+    'DLQ_LIST_TRASH_RULES_FAILURE',
 
     'QDB_COLD_TO_WARM_ALERT',
     'QDB_WARM_UP_TO_DATE',
@@ -228,6 +240,30 @@ export namespace Commbot {
       operationIdOrMessageId: string;
     };
 
+    DLQ_CREATE_TRASH_RULE_SUCCESS: TWithOrigSlackMsg & {
+      dlqIgnoreRuleRawRecord: DlqIgnoreRules.TDlqIgnoreRuleRawRecord;
+    };
+  
+    DLQ_CREATE_TRASH_RULE_FAILURE: TFailureCommon & TWithOrigSlackMsg & {
+      dlqIgnoreRuleRawRecord: DlqIgnoreRules.TDlqIgnoreRuleRawRecord;
+    };
+  
+    DLQ_DELETE_TRASH_RULE_SUCCESS: TWithOrigSlackMsg & DlqIgnoreRules.TIgnoreRuleKey;
+  
+    DLQ_DELETE_TRASH_RULE_FAILURE: TFailureCommon & TWithOrigSlackMsg & DlqIgnoreRules.TIgnoreRuleKey;
+
+    DLQ_LIST_TRASH_RULES_SUCCESS: TWithOrigSlackMsg & {
+      dlqName: string;
+      region: Region;
+      processingEnvironmentId: string;
+      content: string;
+    };
+
+    DLQ_LIST_TRASH_RULES_FAILURE: TFailureCommon & TWithOrigSlackMsg & {
+      dlqName: string;
+      region: Region;
+      processingEnvironmentId: string;
+    };
 
     QDB_COLD_TO_WARM_ALERT: TQDBCommandArgsCommon & {
       iteratorAge: number;
