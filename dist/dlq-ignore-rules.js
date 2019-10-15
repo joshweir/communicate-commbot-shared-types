@@ -17,14 +17,14 @@ var DlqIgnoreRules;
 (function (DlqIgnoreRules) {
     DlqIgnoreRules.isStepMatcher = (thing) => {
         if (typeof thing !== 'object') {
-            throw new Error(`step matcher invalid, must be an object: ${JSON.stringify(thing)}`);
+            return false;
         }
         const { stepName } = thing, matcherProps = __rest(thing, ["stepName"]);
         if (typeof stepName !== 'string' || !stepName || !stepName.length) {
-            throw new Error(`step matcher invalid, stepName prop is required: ${JSON.stringify(thing)}`);
+            return false;
         }
         if (!joshs_object_matcher_1.isMatcher(matcherProps)) {
-            throw new Error(`step matcher invalid, matcher props invalid: ${JSON.stringify(thing)}`);
+            return false;
         }
         return true;
     };
@@ -32,7 +32,7 @@ var DlqIgnoreRules;
         if (typeof thing !== 'object')
             return false;
         if ((!thing.modInfo || !thing.modInfo.length) && (!thing.modSteps || !thing.modSteps.length)) {
-            throw new Error(`modplanMatcherExpression must contain modInfo item(s) and/or modStep item(s), got: ${JSON.stringify(thing, null, 2)}`);
+            return false;
         }
         if ((!thing.modInfo || thing.modInfo.filter(joshs_object_matcher_1.isMatcher).length === thing.modInfo.length) &&
             (!thing.modSteps || thing.modSteps.filter(DlqIgnoreRules.isStepMatcher).length === thing.modSteps.length)) {
@@ -42,7 +42,7 @@ var DlqIgnoreRules;
     };
     DlqIgnoreRules.isModPlanMatcherExpressions = (thing) => {
         if (!(thing instanceof Array)) {
-            throw new Error(`mod plan matcher expression must be an array`);
+            return false;
         }
         if (thing.length > 0 && thing.filter(DlqIgnoreRules.isModPlanMatcherExpression).length === thing.length) {
             return true;

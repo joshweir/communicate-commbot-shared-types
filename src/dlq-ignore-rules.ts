@@ -16,14 +16,14 @@ export namespace DlqIgnoreRules {
   
   export const isStepMatcher = (thing: any): thing is TStepMatcher => {
     if (typeof thing !== 'object') {
-      throw new Error(`step matcher invalid, must be an object: ${JSON.stringify(thing)}`);
+      return false;
     }
     const { stepName, ...matcherProps } = thing;
     if (typeof stepName !== 'string' || !stepName || !stepName.length) {
-      throw new Error(`step matcher invalid, stepName prop is required: ${JSON.stringify(thing)}`);
+      return false;
     }
     if (!isMatcher(matcherProps)) {
-      throw new Error(`step matcher invalid, matcher props invalid: ${JSON.stringify(thing)}`);
+      return false;
     }
   
     return true;
@@ -33,7 +33,7 @@ export namespace DlqIgnoreRules {
     if (typeof thing !== 'object') return false;
   
     if ((!thing.modInfo || !thing.modInfo.length) && (!thing.modSteps || !thing.modSteps.length)) {
-      throw new Error(`modplanMatcherExpression must contain modInfo item(s) and/or modStep item(s), got: ${JSON.stringify(thing, null, 2)}`);
+      return false;
     }
   
     if (
@@ -48,7 +48,7 @@ export namespace DlqIgnoreRules {
   
   export const isModPlanMatcherExpressions = (thing: any): thing is TModplanMatcherExpression[] => {
     if (!(thing instanceof Array)) {
-      throw new Error(`mod plan matcher expression must be an array`);
+      return false;
     }
   
     if (thing.length > 0 && thing.filter(isModPlanMatcherExpression).length === thing.length) {
