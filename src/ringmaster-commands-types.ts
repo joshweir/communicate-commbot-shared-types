@@ -18,6 +18,7 @@ export const ringmasterCommands = [
   'DLQ_CREATE_TRASH_RULE',
   'DLQ_DELETE_TRASH_RULE',
   'DLQ_LIST_TRASH_RULES',
+  'DLQ_STATUS',
 
   'QDB_PAUSE',
   'QDB_RESUME',
@@ -41,6 +42,7 @@ export const ringmasterCommands = [
   'DLQ_CREATE_TRASH_RULE',
   'DLQ_DELETE_TRASH_RULE',
   'DLQ_LIST_TRASH_RULES',
+  'DLQ_STATUS',
 
   'QDB_PAUSE',
   'QDB_RESUME',
@@ -110,6 +112,8 @@ export interface TRingmasterCommandArgs {
     dlqName: string;
     processingEnvironmentId: string;
   };
+
+  DLQ_STATUS: TRingmasterCommandArgsCommon;
 
   QDB_PAUSE: TQDBCommandArgsCommon;
   QDB_RESUME: TQDBCommandArgsCommon;

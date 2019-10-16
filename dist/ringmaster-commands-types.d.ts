@@ -1,7 +1,7 @@
 import { Dlq } from './dlq-types';
 import { Commbot } from './commbot-commands-types';
 import { DlqIgnoreRules } from './dlq-ignore-rules';
-export declare const ringmasterCommands: ["DLQ_CREATE_IGNORE_RULE", "DLQ_DELETE_IGNORE_RULE", "DLQ_DELETE_MESSAGE", "DLQ_REQUEUE_MESSAGE", "DLQ_BULK_REQUEUE", "DLQ_LIST_IGNORE_RULES", "DLQ_RESUME", "DLQ_PAUSE", "DLQ_COUNT", "DLQ_HEAD", "DLQ_TAIL", "DLQ_PICK", "DLQ_CREATE_TRASH_RULE", "DLQ_DELETE_TRASH_RULE", "DLQ_LIST_TRASH_RULES", "QDB_PAUSE", "QDB_RESUME", "QDB_RESTART", "QDB_WARM_TO_HOT", "DATAMOD"];
+export declare const ringmasterCommands: ["DLQ_CREATE_IGNORE_RULE", "DLQ_DELETE_IGNORE_RULE", "DLQ_DELETE_MESSAGE", "DLQ_REQUEUE_MESSAGE", "DLQ_BULK_REQUEUE", "DLQ_LIST_IGNORE_RULES", "DLQ_RESUME", "DLQ_PAUSE", "DLQ_COUNT", "DLQ_HEAD", "DLQ_TAIL", "DLQ_PICK", "DLQ_CREATE_TRASH_RULE", "DLQ_DELETE_TRASH_RULE", "DLQ_LIST_TRASH_RULES", "DLQ_STATUS", "QDB_PAUSE", "QDB_RESUME", "QDB_RESTART", "QDB_WARM_TO_HOT", "DATAMOD"];
 declare type TRingmasterCommandArgsCommon = {
     slackMessageTs: string;
 };
@@ -46,6 +46,7 @@ export interface TRingmasterCommandArgs {
         dlqName: string;
         processingEnvironmentId: string;
     };
+    DLQ_STATUS: TRingmasterCommandArgsCommon;
     QDB_PAUSE: TQDBCommandArgsCommon;
     QDB_RESUME: TQDBCommandArgsCommon;
     QDB_RESTART: TQDBCommandArgsCommon;
