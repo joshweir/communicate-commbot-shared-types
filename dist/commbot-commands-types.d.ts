@@ -33,10 +33,10 @@ export declare namespace Commbot {
         DLQ_ALERT: {
             dlqMessage: Dlq.TDlqMessage;
         };
-        DLQ_CREATE_IGNORE_RULE_SUCCESS: TWithOrigSlackMsg & {
+        DLQ_CREATE_IGNORE_RULE_SUCCESS: TWithOrigSlackMsg & TWithRegionAndDataEnv & {
             dlqIgnoreRuleRawRecord: DlqIgnoreRules.TDlqIgnoreRuleRawRecord;
         };
-        DLQ_CREATE_IGNORE_RULE_FAILURE: TFailureCommon & TWithOrigSlackMsg & {
+        DLQ_CREATE_IGNORE_RULE_FAILURE: TFailureCommon & TWithOrigSlackMsg & TWithRegionAndDataEnv & {
             dlqIgnoreRuleRawRecord: DlqIgnoreRules.TDlqIgnoreRuleRawRecord;
         };
         DLQ_DELETE_IGNORE_RULE_SUCCESS: TWithOrigSlackMsg & DlqIgnoreRules.TIgnoreRuleKey;
@@ -106,10 +106,10 @@ export declare namespace Commbot {
         DLQ_PICK_FAILURE: TFailureCommon & TWithOrigSlackMsg & TWithRegionAndDataEnv & {
             operationIdOrMessageId: string;
         };
-        DLQ_CREATE_TRASH_RULE_SUCCESS: TWithOrigSlackMsg & {
+        DLQ_CREATE_TRASH_RULE_SUCCESS: TWithOrigSlackMsg & TWithRegionAndDataEnv & {
             dlqIgnoreRuleRawRecord: DlqIgnoreRules.TDlqIgnoreRuleRawRecord;
         };
-        DLQ_CREATE_TRASH_RULE_FAILURE: TFailureCommon & TWithOrigSlackMsg & {
+        DLQ_CREATE_TRASH_RULE_FAILURE: TFailureCommon & TWithOrigSlackMsg & TWithRegionAndDataEnv & {
             dlqIgnoreRuleRawRecord: DlqIgnoreRules.TDlqIgnoreRuleRawRecord;
         };
         DLQ_DELETE_TRASH_RULE_SUCCESS: TWithOrigSlackMsg & DlqIgnoreRules.TIgnoreRuleKey;
@@ -125,21 +125,21 @@ export declare namespace Commbot {
             region: Region;
             processingEnvironmentId: string;
         };
-        QDB_COLD_TO_WARM_ALERT: TQDBCommandArgsCommon & {
+        QDB_COLD_TO_WARM_ALERT: TQDBCommandArgsCommon & TWithRegionAndDataEnv & {
             iteratorAge: number;
         };
-        QDB_WARM_UP_TO_DATE: TQDBCommandArgsCommon;
-        QDB_ALERT: TQDBCommandArgsCommon & {
+        QDB_WARM_UP_TO_DATE: TQDBCommandArgsCommon & TWithRegionAndDataEnv;
+        QDB_ALERT: TQDBCommandArgsCommon & TWithRegionAndDataEnv & {
             content: string;
         };
-        QDB_PAUSE_SUCCESS: TQDBCommandArgsCommon & TWithOrigSlackMsg;
-        QDB_PAUSE_FAILURE: TQDBCommandArgsCommon & TWithOrigSlackMsg & TFailureCommon;
-        QDB_RESUME_SUCCESS: TQDBCommandArgsCommon & TWithOrigSlackMsg;
-        QDB_RESUME_FAILURE: TQDBCommandArgsCommon & TWithOrigSlackMsg & TFailureCommon;
-        QDB_RESTART_SUCCESS: TQDBCommandArgsCommon & TWithOrigSlackMsg;
-        QDB_RESTART_FAILURE: TQDBCommandArgsCommon & TWithOrigSlackMsg & TFailureCommon;
-        QDB_WARM_TO_HOT_SUCCESS: TQDBCommandArgsCommon & TWithOrigSlackMsg;
-        QDB_WARM_TO_HOT_FAILURE: TQDBCommandArgsCommon & TWithOrigSlackMsg & TFailureCommon;
+        QDB_PAUSE_SUCCESS: TQDBCommandArgsCommon & TWithOrigSlackMsg & TWithRegionAndDataEnv;
+        QDB_PAUSE_FAILURE: TQDBCommandArgsCommon & TWithOrigSlackMsg & TFailureCommon & TWithRegionAndDataEnv;
+        QDB_RESUME_SUCCESS: TQDBCommandArgsCommon & TWithOrigSlackMsg & TWithRegionAndDataEnv;
+        QDB_RESUME_FAILURE: TQDBCommandArgsCommon & TWithOrigSlackMsg & TFailureCommon & TWithRegionAndDataEnv;
+        QDB_RESTART_SUCCESS: TQDBCommandArgsCommon & TWithOrigSlackMsg & TWithRegionAndDataEnv;
+        QDB_RESTART_FAILURE: TQDBCommandArgsCommon & TWithOrigSlackMsg & TFailureCommon & TWithRegionAndDataEnv;
+        QDB_WARM_TO_HOT_SUCCESS: TQDBCommandArgsCommon & TWithOrigSlackMsg & TWithRegionAndDataEnv;
+        QDB_WARM_TO_HOT_FAILURE: TQDBCommandArgsCommon & TWithOrigSlackMsg & TFailureCommon & TWithRegionAndDataEnv;
         DATAMOD_SUCCESS: TWithOrigSlackMsg & TWithRegionAndDataEnv;
         DATAMOD_FAILURE: TWithOrigSlackMsg & TWithRegionAndDataEnv & TFailureCommon;
     }
