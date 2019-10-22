@@ -54,6 +54,7 @@ export const ringmasterCommands = [
 
 type TRingmasterCommandArgsCommon = {
   slackMessageTs: string;
+  slackChannelId: string;
 };
 
 type TQDBCommandArgsCommon = TRingmasterCommandArgsCommon & {

@@ -119,6 +119,7 @@ export namespace Commbot {
   
   type TWithOrigSlackMsg = {
     slackMessageTs: string;
+    slackChannelId: string;
   };
 
   type TFailureCommon = {
