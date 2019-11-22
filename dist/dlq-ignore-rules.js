@@ -49,6 +49,9 @@ var DlqIgnoreRules;
         }
         return false;
     };
+    DlqIgnoreRules.isLogMatcher = (thing) => typeof thing === 'object' &&
+        typeof thing.pattern === 'string' &&
+        ['undefined', 'string'].indexOf(typeof thing.flags) !== -1;
     DlqIgnoreRules.isDlqIgnoreRuleRecord = (thing) => typeof thing === 'object' &&
         typeof thing.id === 'string' &&
         typeof thing.env === 'string' &&
@@ -56,6 +59,8 @@ var DlqIgnoreRules;
         ['AUS', 'NOVA', 'ALL'].indexOf(thing.region) > -1 &&
         typeof thing.dlqName === 'string' &&
         typeof thing.description === 'string' &&
+        (typeof thing.logsMustExistPatterns === 'undefined' || (typeof thing.logsMustExistPatterns === 'object' &&
+            thing.logsMustExistPatterns.filter(DlqIgnoreRules.isLogMatcher).length === thing.logsMustExistPatterns.length)) &&
         thing.ignoreRules instanceof Array &&
         (DlqIgnoreRules.isModPlanMatcherExpressions(thing.ignoreRules) ||
             thing.ignoreRules.filter(joshs_object_matcher_1.isMatcher).length === thing.ignoreRules.length);
@@ -66,7 +71,8 @@ var DlqIgnoreRules;
         ['AUS', 'NOVA', 'ALL'].indexOf(thing.region) > -1 &&
         typeof thing.dlqName === 'string' &&
         typeof thing.description === 'string' &&
-        typeof thing.ignoreRules === 'string';
+        typeof thing.ignoreRules === 'string' &&
+        ['undefined', 'string'].indexOf(typeof thing.logsMustExistPatterns) !== -1;
     DlqIgnoreRules.parseMultiValueIgnoreRuleField = (input) => {
         let result = input;
         if (typeof result === 'string') {

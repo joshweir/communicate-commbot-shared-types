@@ -58,6 +58,12 @@ export namespace DlqIgnoreRules {
     return false;
   };
 
+  export type LogMatcher = { pattern: string; flags?: string };
+  export const isLogMatcher = (thing: any): thing is LogMatcher =>
+    typeof thing === 'object' &&
+    typeof thing.pattern === 'string' &&
+    ['undefined', 'string'].indexOf(typeof thing.flags) !== -1;
+
   export type TDlqIgnoreRuleRecord = {
     id: string;
     env: string;
@@ -65,6 +71,7 @@ export namespace DlqIgnoreRules {
     dlqName: string;
     description: string;
     ignoreRules: (TModplanMatcherExpression | TMatcher)[];
+    logsMustExistPatterns?: LogMatcher[];
   };
 
   export const isDlqIgnoreRuleRecord = (thing: any): thing is TDlqIgnoreRuleRecord =>
@@ -75,14 +82,19 @@ export namespace DlqIgnoreRules {
     ['AUS', 'NOVA', 'ALL'].indexOf(thing.region) > -1 &&
     typeof thing.dlqName === 'string' &&
     typeof thing.description === 'string' &&
+    (typeof thing.logsMustExistPatterns === 'undefined' || (
+      typeof thing.logsMustExistPatterns === 'object' &&
+      thing.logsMustExistPatterns.filter(isLogMatcher).length === thing.logsMustExistPatterns.length
+    )) &&
     thing.ignoreRules instanceof Array &&
     (
       isModPlanMatcherExpressions(thing.ignoreRules) ||
       thing.ignoreRules.filter(isMatcher).length === thing.ignoreRules.length
     );
 
-  export type TDlqIgnoreRuleRawRecord = Omit<TDlqIgnoreRuleRecord, 'ignoreRules'> & {
+  export type TDlqIgnoreRuleRawRecord = Omit<TDlqIgnoreRuleRecord, 'ignoreRules' | 'logsMustExistPatterns'> & {
     ignoreRules: string;
+    logsMustExistPatterns?: string;
   };
 
   export const isDlqIgnoreRuleRawRecord = (thing: any): thing is TDlqIgnoreRuleRawRecord =>
@@ -93,7 +105,8 @@ export namespace DlqIgnoreRules {
     ['AUS', 'NOVA', 'ALL'].indexOf(thing.region) > -1 &&
     typeof thing.dlqName === 'string' &&
     typeof thing.description === 'string' &&
-    typeof thing.ignoreRules === 'string';
+    typeof thing.ignoreRules === 'string' &&
+    ['undefined', 'string'].indexOf(typeof thing.logsMustExistPatterns) !== -1;
   
   export const parseMultiValueIgnoreRuleField = (input: string): string => {
     let result: string = input;

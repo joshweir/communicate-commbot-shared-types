@@ -11,6 +11,11 @@ export declare namespace DlqIgnoreRules {
     const isStepMatcher: (thing: any) => thing is TStepMatcher;
     const isModPlanMatcherExpression: (thing: any) => thing is TModplanMatcherExpression;
     const isModPlanMatcherExpressions: (thing: any) => thing is TModplanMatcherExpression[];
+    type LogMatcher = {
+        pattern: string;
+        flags?: string;
+    };
+    const isLogMatcher: (thing: any) => thing is LogMatcher;
     type TDlqIgnoreRuleRecord = {
         id: string;
         env: string;
@@ -18,10 +23,12 @@ export declare namespace DlqIgnoreRules {
         dlqName: string;
         description: string;
         ignoreRules: (TModplanMatcherExpression | TMatcher)[];
+        logsMustExistPatterns?: LogMatcher[];
     };
     const isDlqIgnoreRuleRecord: (thing: any) => thing is TDlqIgnoreRuleRecord;
-    type TDlqIgnoreRuleRawRecord = Omit<TDlqIgnoreRuleRecord, 'ignoreRules'> & {
+    type TDlqIgnoreRuleRawRecord = Omit<TDlqIgnoreRuleRecord, 'ignoreRules' | 'logsMustExistPatterns'> & {
         ignoreRules: string;
+        logsMustExistPatterns?: string;
     };
     const isDlqIgnoreRuleRawRecord: (thing: any) => thing is TDlqIgnoreRuleRawRecord;
     const parseMultiValueIgnoreRuleField: (input: string) => string;
