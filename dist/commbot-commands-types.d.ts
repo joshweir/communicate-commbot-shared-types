@@ -145,6 +145,7 @@ export declare namespace Commbot {
         DATAMOD_FAILURE: TWithOrigSlackMsg & TWithRegionAndDataEnv & TFailureCommon;
         TERRAFORM_PLAN_APPROVAL_REQUEST: {
             octopus_deployment_id: string;
+            octopus_task_step_id: string;
         };
     }
     type TCommbotCommandTypes = typeof commbotCommands;
