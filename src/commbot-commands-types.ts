@@ -67,6 +67,10 @@ export namespace Commbot {
 
     'DATAMOD_SUCCESS',
     'DATAMOD_FAILURE',
+
+    'TERRAFORM_PLAN_APPROVAL_REQUEST',
+    'TERRAFORM_PLAN_APPROVED_SUCCESS',
+    'TERRAFORM_PLAN_APPROVED_FAILURE',
   ] as [
     'GENERIC_ALERT',
     'DLQ_ALERT',
@@ -115,6 +119,10 @@ export namespace Commbot {
 
     'DATAMOD_SUCCESS',
     'DATAMOD_FAILURE',
+
+    'TERRAFORM_PLAN_APPROVAL_REQUEST',
+    'TERRAFORM_PLAN_APPROVED_SUCCESS',
+    'TERRAFORM_PLAN_APPROVED_FAILURE',
   ];
   
   type TWithOrigSlackMsg = {
@@ -288,6 +296,12 @@ export namespace Commbot {
 
     DATAMOD_SUCCESS: TWithOrigSlackMsg & TWithRegionAndDataEnv;
     DATAMOD_FAILURE: TWithOrigSlackMsg & TWithRegionAndDataEnv & TFailureCommon;
+
+    TERRAFORM_PLAN_APPROVAL_REQUEST: {
+      octopus_deployment_id: string;
+    };
+    TERRAFORM_PLAN_APPROVED_SUCCESS: TWithOrigSlackMsg;
+    TERRAFORM_PLAN_APPROVED_FAILURE: TWithOrigSlackMsg & TFailureCommon;
   };
   
   export type TCommbotCommandTypes = typeof commbotCommands;

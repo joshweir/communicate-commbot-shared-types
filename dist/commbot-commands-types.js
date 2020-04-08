@@ -48,6 +48,9 @@ var Commbot;
         'QDB_WARM_TO_HOT_FAILURE',
         'DATAMOD_SUCCESS',
         'DATAMOD_FAILURE',
+        'TERRAFORM_PLAN_APPROVAL_REQUEST',
+        'TERRAFORM_PLAN_APPROVED_SUCCESS',
+        'TERRAFORM_PLAN_APPROVED_FAILURE',
     ];
     ;
     Commbot.isCommbotCommand = (thing) => !!thing && !!thing.internalCommand && Commbot.commbotCommands.indexOf(thing.command) !== -1;
