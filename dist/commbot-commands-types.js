@@ -49,6 +49,8 @@ var Commbot;
         'DATAMOD_SUCCESS',
         'DATAMOD_FAILURE',
         'TERRAFORM_PLAN_APPROVAL_REQUEST',
+        'GET_ENTITY_SUCCESS',
+        'GET_ENTITY_FAILURE',
     ];
     ;
     Commbot.isCommbotCommand = (thing) => !!thing && !!thing.internalCommand && Commbot.commbotCommands.indexOf(thing.command) !== -1;

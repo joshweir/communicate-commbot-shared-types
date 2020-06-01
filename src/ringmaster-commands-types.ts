@@ -26,6 +26,8 @@ export const ringmasterCommands = [
   'QDB_WARM_TO_HOT',
 
   'DATAMOD',
+
+  'GET_ENTITY',
 ] as [
   'DLQ_CREATE_IGNORE_RULE',
   'DLQ_DELETE_IGNORE_RULE',
@@ -50,6 +52,8 @@ export const ringmasterCommands = [
   'QDB_WARM_TO_HOT',
 
   'DATAMOD',
+
+  'GET_ENTITY'
 ];
 
 type TRingmasterCommandArgsCommon = {
@@ -123,6 +127,10 @@ export interface TRingmasterCommandArgs {
 
   DATAMOD: TRingmasterCommandArgsCommon & {
     dataMods: string;
+  };
+
+  GET_ENTITY: TRingmasterCommandArgsCommon & {
+    uri: string;
   };
 }
 

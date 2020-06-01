@@ -69,6 +69,9 @@ export namespace Commbot {
     'DATAMOD_FAILURE',
 
     'TERRAFORM_PLAN_APPROVAL_REQUEST',
+
+    'GET_ENTITY_SUCCESS',
+    'GET_ENTITY_FAILURE',
   ] as [
     'GENERIC_ALERT',
     'DLQ_ALERT',
@@ -119,6 +122,9 @@ export namespace Commbot {
     'DATAMOD_FAILURE',
 
     'TERRAFORM_PLAN_APPROVAL_REQUEST',
+
+    'GET_ENTITY_SUCCESS',
+    'GET_ENTITY_FAILURE',
   ];
   
   type TWithOrigSlackMsg = {
@@ -297,6 +303,11 @@ export namespace Commbot {
       octopus_deployment_id: string;
       octopus_task_step_id: string;
     };
+
+    GET_ENTITY_SUCCESS: TWithOrigSlackMsg & TWithRegionAndDataEnv & {
+      data: string;
+    };
+    GET_ENTITY_FAILURE: TWithOrigSlackMsg & TWithRegionAndDataEnv & TFailureCommon;
   };
   
   export type TCommbotCommandTypes = typeof commbotCommands;

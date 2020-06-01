@@ -22,6 +22,7 @@ exports.ringmasterCommands = [
     'QDB_RESTART',
     'QDB_WARM_TO_HOT',
     'DATAMOD',
+    'GET_ENTITY',
 ];
 exports.isRingmasterCommand = (thing) => !!thing && exports.ringmasterCommands.indexOf(thing.command) !== -1;
 //# sourceMappingURL=ringmaster-commands-types.js.map
