@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.mapDataEnvsFromAllEnvs = exports.dataEnvironments = exports.appEnvironments = exports.regions = void 0;
 exports.regions = ["aus", "nova"];
 exports.appEnvironments = ["dev", "staging", "qa", "live"];
 exports.dataEnvironments = ["com-datastaging", "com-datalive"];

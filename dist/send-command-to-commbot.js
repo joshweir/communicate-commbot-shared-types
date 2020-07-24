@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.buildSendCommandToCommbot = void 0;
 exports.buildSendCommandToCommbot = (sns, commbotTopicArn, localProcessingEnv) => async (command, args) => {
     const c = {
         command,
