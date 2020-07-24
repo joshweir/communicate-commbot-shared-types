@@ -1,18 +1,19 @@
-import { SNS } from 'aws-sdk';
-import { WebClient } from '@slack/web-api';
-import { DlqIgnoreRules } from './dlq-ignore-rules';
-import { Dlq } from './dlq-types';
-import { DataEnv, Region } from './regions-and-envs';
+import { SNS } from "aws-sdk";
+import { WebClient } from "@slack/web-api";
+import { DlqIgnoreRules } from "./dlq-ignore-rules";
+import { Dlq } from "./dlq-types";
+import { DataEnv, Region } from "./regions-and-envs";
+import { Cw } from "./cw-types";
 export declare namespace Commbot {
-    type TSendCommandToCommbot = (command: TCommbotCommand['command'], args: TCommbotCommand['args']) => Promise<any>;
-    type TBuildSendCommandToCommbot = (sns: SNS, commbotTopicArn: string, localProcessingEnv?: string) => TSendCommandToCommbot;
-    type TSlackContext = {
+    export type TSendCommandToCommbot = (command: TCommbotCommand["command"], args: TCommbotCommand["args"]) => Promise<any>;
+    export type TBuildSendCommandToCommbot = (sns: SNS, commbotTopicArn: string, localProcessingEnv?: string) => TSendCommandToCommbot;
+    export type TSlackContext = {
         client: WebClient;
         channel: string;
         sender: string;
         botUser: string;
     };
-    const commbotCommands: ["GENERIC_ALERT", "DLQ_ALERT", "DLQ_CREATE_IGNORE_RULE_SUCCESS", "DLQ_CREATE_IGNORE_RULE_FAILURE", "DLQ_DELETE_IGNORE_RULE_SUCCESS", "DLQ_DELETE_IGNORE_RULE_FAILURE", "DLQ_REQUEUE_MESSAGE_SUCCESS", "DLQ_REQUEUE_MESSAGE_FAILURE", "DLQ_DELETE_MESSAGE_SUCCESS", "DLQ_DELETE_MESSAGE_FAILURE", "DLQ_BULK_REQUEUE_SUCCESS", "DLQ_BULK_REQUEUE_FAILURE", "DLQ_LIST_IGNORE_RULES_SUCCESS", "DLQ_LIST_IGNORE_RULES_FAILURE", "DLQ_RESUME_SUCCESS", "DLQ_RESUME_FAILURE", "DLQ_PAUSE_SUCCESS", "DLQ_PAUSE_FAILURE", "DLQ_COUNT_SUCCESS", "DLQ_COUNT_FAILURE", "DLQ_HEAD_SUCCESS", "DLQ_HEAD_FAILURE", "DLQ_TAIL_SUCCESS", "DLQ_TAIL_FAILURE", "DLQ_PICK_SUCCESS", "DLQ_PICK_FAILURE", "DLQ_CREATE_TRASH_RULE_SUCCESS", "DLQ_CREATE_TRASH_RULE_FAILURE", "DLQ_DELETE_TRASH_RULE_SUCCESS", "DLQ_DELETE_TRASH_RULE_FAILURE", "DLQ_LIST_TRASH_RULES_SUCCESS", "DLQ_LIST_TRASH_RULES_FAILURE", "QDB_COLD_TO_WARM_ALERT", "QDB_WARM_UP_TO_DATE", "QDB_ALERT", "QDB_PAUSE_SUCCESS", "QDB_PAUSE_FAILURE", "QDB_RESUME_SUCCESS", "QDB_RESUME_FAILURE", "QDB_RESTART_SUCCESS", "QDB_RESTART_FAILURE", "QDB_WARM_TO_HOT_SUCCESS", "QDB_WARM_TO_HOT_FAILURE", "DATAMOD_SUCCESS", "DATAMOD_FAILURE", "TERRAFORM_PLAN_APPROVAL_REQUEST", "GET_ENTITY_SUCCESS", "GET_ENTITY_FAILURE"];
+    export const commbotCommands: readonly ["GENERIC_ALERT", "DLQ_ALERT", "DLQ_CREATE_IGNORE_RULE_SUCCESS", "DLQ_CREATE_IGNORE_RULE_FAILURE", "DLQ_DELETE_IGNORE_RULE_SUCCESS", "DLQ_DELETE_IGNORE_RULE_FAILURE", "DLQ_REQUEUE_MESSAGE_SUCCESS", "DLQ_REQUEUE_MESSAGE_FAILURE", "DLQ_DELETE_MESSAGE_SUCCESS", "DLQ_DELETE_MESSAGE_FAILURE", "DLQ_BULK_REQUEUE_SUCCESS", "DLQ_BULK_REQUEUE_FAILURE", "DLQ_LIST_IGNORE_RULES_SUCCESS", "DLQ_LIST_IGNORE_RULES_FAILURE", "DLQ_RESUME_SUCCESS", "DLQ_RESUME_FAILURE", "DLQ_PAUSE_SUCCESS", "DLQ_PAUSE_FAILURE", "DLQ_COUNT_SUCCESS", "DLQ_COUNT_FAILURE", "DLQ_HEAD_SUCCESS", "DLQ_HEAD_FAILURE", "DLQ_TAIL_SUCCESS", "DLQ_TAIL_FAILURE", "DLQ_PICK_SUCCESS", "DLQ_PICK_FAILURE", "DLQ_CREATE_TRASH_RULE_SUCCESS", "DLQ_CREATE_TRASH_RULE_FAILURE", "DLQ_DELETE_TRASH_RULE_SUCCESS", "DLQ_DELETE_TRASH_RULE_FAILURE", "DLQ_LIST_TRASH_RULES_SUCCESS", "DLQ_LIST_TRASH_RULES_FAILURE", "QDB_COLD_TO_WARM_ALERT", "QDB_WARM_UP_TO_DATE", "QDB_ALERT", "QDB_PAUSE_SUCCESS", "QDB_PAUSE_FAILURE", "QDB_RESUME_SUCCESS", "QDB_RESUME_FAILURE", "QDB_RESTART_SUCCESS", "QDB_RESTART_FAILURE", "QDB_WARM_TO_HOT_SUCCESS", "QDB_WARM_TO_HOT_FAILURE", "DATAMOD_SUCCESS", "DATAMOD_FAILURE", "TERRAFORM_PLAN_APPROVAL_REQUEST", "GET_ENTITY_SUCCESS", "GET_ENTITY_FAILURE", "CW_ALERT"];
     type TWithOrigSlackMsg = {
         slackMessageTs: string;
         slackChannelId: string;
@@ -27,7 +28,7 @@ export declare namespace Commbot {
         region: Region;
         dataEnv: DataEnv;
     };
-    interface TCommbotCommandArgs {
+    export interface TCommbotCommandArgs {
         GENERIC_ALERT: TWithRegionAndDataEnv & {
             content: string;
         };
@@ -151,21 +152,25 @@ export declare namespace Commbot {
             data: string;
         };
         GET_ENTITY_FAILURE: TWithOrigSlackMsg & TWithRegionAndDataEnv & TFailureCommon;
+        CW_ALERT: {
+            alert: Cw.TCWAlert;
+        };
     }
-    type TCommbotCommandTypes = typeof commbotCommands;
-    type TCommbotCommandType = TCommbotCommandTypes[number];
-    type TCommbotCommand<A extends {} = {}> = {
+    export type TCommbotCommandTypes = typeof commbotCommands;
+    export type TCommbotCommandType = TCommbotCommandTypes[number];
+    export type TCommbotCommand<A extends {} = {}> = {
         internalCommand: true;
         localProcessingEnv?: string;
         command: TCommbotCommandType;
         args: A;
     };
-    const isCommbotCommand: (thing: any) => thing is TCommbotCommand<{}>;
-    type TCommbotCommandProcessor<C extends TCommbotCommandType> = (c: TCommbotCommand<TCommbotCommandArgs[C]>, context: Pick<Commbot.TSlackContext, 'client'> & {
+    export const isCommbotCommand: (thing: any) => thing is TCommbotCommand<{}>;
+    export type TCommbotCommandProcessor<C extends TCommbotCommandType> = (c: TCommbotCommand<TCommbotCommandArgs[C]>, context: Pick<Commbot.TSlackContext, "client"> & {
         userclient: WebClient;
     }) => Promise<any>;
-    type TCommbotCommandProcessors = {
+    export type TCommbotCommandProcessors = {
         [c in TCommbotCommandType]: TCommbotCommandProcessor<c>;
     };
+    export {};
 }
 //# sourceMappingURL=commbot-commands-types.d.ts.map

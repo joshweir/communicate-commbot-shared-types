@@ -2,7 +2,11 @@
   "include": ["src/**/*"],
   "exclude": ["node_modules", "**/*.spec.ts"],
   "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": "src",
+    "incremental": true,
     "strict": true,
+    "jsx": "react",
     "module": "commonjs",
     "declaration": true,
     "noImplicitAny": true,
@@ -13,11 +17,11 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "noErrorTruncation": true,
-    "target": "ES6",
+    "forceConsistentCasingInFileNames": true,
+    "target": "es2019",
     "composite": true,
     "declarationMap": true,
-    "outDir": "dist",
-    "rootDir": "src"
-  },
-  "references": []
+    "resolveJsonModule": true,
+    "lib": ["es2020"]
+  }
 }
