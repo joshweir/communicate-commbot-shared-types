@@ -22,6 +22,7 @@ export namespace Dlq {
     payload: string;
     attributes?: SQSRecordAttributes;
     messageAttributes?: Record<string, SQSMessageAttribute>;
+    awsAccountNumber?: number;
   };
 
   export const isSQSRecordAttributes = (thing: any): thing is SQSRecordAttributes =>

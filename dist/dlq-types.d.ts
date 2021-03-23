@@ -20,6 +20,7 @@ export declare namespace Dlq {
         payload: string;
         attributes?: SQSRecordAttributes;
         messageAttributes?: Record<string, SQSMessageAttribute>;
+        awsAccountNumber?: number;
     };
     const isSQSRecordAttributes: (thing: any) => thing is SQSRecordAttributes;
     const isDlqMessage: (thing: any) => thing is TDlqMessage;
