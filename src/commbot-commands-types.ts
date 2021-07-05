@@ -80,6 +80,8 @@ export namespace Commbot {
     "GET_ENTITY_FAILURE",
 
     "CW_ALERT",
+
+    "GHOSTOFMANUEL_PR_REMINDER",
   ] as const;
 
   type TWithOrigSlackMsg = {
@@ -331,6 +333,8 @@ export namespace Commbot {
     CW_ALERT: {
       alert: Cw.TCWAlert;
     };
+
+    GHOSTOFMANUEL_PR_REMINDER: {};
   }
 
   export type TCommbotCommandTypes = typeof commbotCommands;
