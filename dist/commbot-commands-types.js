@@ -54,6 +54,7 @@ var Commbot;
         "GET_ENTITY_FAILURE",
         "CW_ALERT",
         "GHOSTOFMANUEL_PR_REMINDER",
+        "RUN_E2E_TESTS",
     ];
     Commbot.isCommbotCommand = (thing) => !!thing &&
         !!thing.internalCommand &&

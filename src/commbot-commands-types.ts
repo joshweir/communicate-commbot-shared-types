@@ -82,6 +82,7 @@ export namespace Commbot {
     "CW_ALERT",
 
     "GHOSTOFMANUEL_PR_REMINDER",
+    "RUN_E2E_TESTS",
   ] as const;
 
   type TWithOrigSlackMsg = {
@@ -335,6 +336,9 @@ export namespace Commbot {
     };
 
     GHOSTOFMANUEL_PR_REMINDER: {};
+    RUN_E2E_TESTS: {
+      app: 'communicate' | 'auth'
+    }
   }
 
   export type TCommbotCommandTypes = typeof commbotCommands;
