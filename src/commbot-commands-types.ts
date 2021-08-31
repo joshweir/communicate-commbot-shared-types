@@ -107,6 +107,7 @@ export namespace Commbot {
   export interface TCommbotCommandArgs {
     GENERIC_ALERT: TWithRegionAndDataEnv & {
       content: string;
+      channel?: string;
     };
 
     DLQ_ALERT: {

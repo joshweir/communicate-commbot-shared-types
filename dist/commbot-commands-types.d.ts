@@ -31,6 +31,7 @@ export declare namespace Commbot {
     interface TCommbotCommandArgs {
         GENERIC_ALERT: TWithRegionAndDataEnv & {
             content: string;
+            channel?: string;
         };
         DLQ_ALERT: {
             dlqMessage: Dlq.TDlqMessage;
