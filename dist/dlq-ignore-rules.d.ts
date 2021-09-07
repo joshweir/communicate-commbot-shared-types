@@ -23,12 +23,12 @@ export declare namespace DlqIgnoreRules {
         dlqName: string;
         description: string;
         ignoreRules: (TModplanMatcherExpression | TMatcher)[];
-        logsMustExistPatterns?: LogMatcher[];
+        logsMustExistPatterns: LogMatcher[] | undefined;
     };
     const isDlqIgnoreRuleRecord: (thing: any) => thing is TDlqIgnoreRuleRecord;
     type TDlqIgnoreRuleRawRecord = Omit<TDlqIgnoreRuleRecord, 'ignoreRules' | 'logsMustExistPatterns'> & {
         ignoreRules: string;
-        logsMustExistPatterns?: string;
+        logsMustExistPatterns: string | undefined;
     };
     const isDlqIgnoreRuleRawRecord: (thing: any) => thing is TDlqIgnoreRuleRawRecord;
     const parseMultiValueIgnoreRuleField: (input: string) => string;

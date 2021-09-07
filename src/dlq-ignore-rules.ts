@@ -71,7 +71,7 @@ export namespace DlqIgnoreRules {
     dlqName: string;
     description: string;
     ignoreRules: (TModplanMatcherExpression | TMatcher)[];
-    logsMustExistPatterns?: LogMatcher[];
+    logsMustExistPatterns: LogMatcher[] | undefined;
   };
 
   export const isDlqIgnoreRuleRecord = (thing: any): thing is TDlqIgnoreRuleRecord =>
@@ -94,7 +94,7 @@ export namespace DlqIgnoreRules {
 
   export type TDlqIgnoreRuleRawRecord = Omit<TDlqIgnoreRuleRecord, 'ignoreRules' | 'logsMustExistPatterns'> & {
     ignoreRules: string;
-    logsMustExistPatterns?: string;
+    logsMustExistPatterns: string | undefined;
   };
 
   export const isDlqIgnoreRuleRawRecord = (thing: any): thing is TDlqIgnoreRuleRawRecord =>
