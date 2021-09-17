@@ -58,6 +58,11 @@ export namespace Commbot {
     "DLQ_LIST_TRASH_RULES_SUCCESS",
     "DLQ_LIST_TRASH_RULES_FAILURE",
 
+    "FARKEN_RESUME_SUCCESS",
+    "FARKEN_RESUME_FAILURE",
+    "FARKEN_PAUSE_SUCCESS",
+    "FARKEN_PAUSE_FAILURE",
+
     "QDB_COLD_TO_WARM_ALERT",
     "QDB_WARM_UP_TO_DATE",
     "QDB_ALERT",
@@ -270,6 +275,18 @@ export namespace Commbot {
         region: Region;
         processingEnvironmentId: string;
       };
+
+    FARKEN_RESUME_SUCCESS: TWithOrigSlackMsg & TWithRegionAndDataEnv;
+
+    FARKEN_RESUME_FAILURE: TFailureCommon &
+      TWithOrigSlackMsg &
+      TWithRegionAndDataEnv;
+
+    FARKEN_PAUSE_SUCCESS: TWithOrigSlackMsg & TWithRegionAndDataEnv;
+
+    FARKEN_PAUSE_FAILURE: TFailureCommon &
+      TWithOrigSlackMsg &
+      TWithRegionAndDataEnv;
 
     QDB_COLD_TO_WARM_ALERT: TQDBCommandArgsCommon &
       TWithRegionAndDataEnv & {

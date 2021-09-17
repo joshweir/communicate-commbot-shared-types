@@ -17,6 +17,8 @@ exports.ringmasterCommands = [
     'DLQ_DELETE_TRASH_RULE',
     'DLQ_LIST_TRASH_RULES',
     'DLQ_STATUS',
+    'FARKEN_PAUSE',
+    'FARKEN_RESUME',
     'QDB_PAUSE',
     'QDB_RESUME',
     'QDB_RESTART',
