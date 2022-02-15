@@ -80,6 +80,7 @@ export namespace Commbot {
 
     "TERRAFORM_PLAN_APPROVAL_REQUEST",
     "CDK_APPROVAL_REQUEST",
+    "CDK_NOTIFY_DONE",
 
     "GET_ENTITY_SUCCESS",
     "GET_ENTITY_FAILURE",
@@ -340,6 +341,9 @@ export namespace Commbot {
     CDK_APPROVAL_REQUEST: {
       octopus_deployment_id: string;
       octopus_task_step_id: string;
+    };
+    CDK_NOTIFY_DONE: {
+      octopus_deployment_id: string;
     };
 
     GET_ENTITY_SUCCESS: TWithOrigSlackMsg &

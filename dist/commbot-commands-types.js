@@ -54,6 +54,7 @@ var Commbot;
         "DATAMOD_FAILURE",
         "TERRAFORM_PLAN_APPROVAL_REQUEST",
         "CDK_APPROVAL_REQUEST",
+        "CDK_NOTIFY_DONE",
         "GET_ENTITY_SUCCESS",
         "GET_ENTITY_FAILURE",
         "CW_ALERT",
