@@ -365,7 +365,7 @@ export namespace Commbot {
     RUN_E2E_TESTS_FAILURE: TWithOrigSlackMsg &
       TFailureCommon;
 
-    QDB2_FAIL_ALERT: {
+    QDB2_FAIL_ALERT: TWithRegionAndDataEnv & {
       errorMessage: string;
       qdb2Name: string;
     }
