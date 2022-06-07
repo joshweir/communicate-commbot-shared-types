@@ -60,7 +60,8 @@ var Commbot;
         "CW_ALERT",
         "GHOSTOFMANUEL_PR_REMINDER",
         "RUN_E2E_TESTS_SUCCESS",
-        "RUN_E2E_TESTS_FAILURE"
+        "RUN_E2E_TESTS_FAILURE",
+        "QDB2_FAIL_ALERT",
     ];
     Commbot.isCommbotCommand = (thing) => !!thing &&
         !!thing.internalCommand &&
