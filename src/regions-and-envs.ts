@@ -1,9 +1,9 @@
-export const regions = ["aus", "nova", "uk"] as ["aus", "nova", "uk"];
+export const regions = ["aus", "nova", "uk", "local"] as ["aus", "nova", "uk", "local"];
 export type Region = typeof regions[number];
 export type RegionIncAll = Region | "all";
-export const appEnvironments = ["dev", "staging", "qa", "live"] as const;
+export const appEnvironments = ["dev", "staging", "qa", "live", "local"] as const;
 export type AppEnv = typeof appEnvironments[number];
-export const dataEnvironments = ["com-datastaging", "com-datalive"] as const;
+export const dataEnvironments = ["com-datastaging", "com-datalive", "local"] as const;
 export type DataEnv = typeof dataEnvironments[number];
 export type DataEnvIncAll = DataEnv | "all";
 
