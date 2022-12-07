@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.regions = ["aus", "nova", "uk", "local"];
-exports.appEnvironments = ["dev", "staging", "qa", "live", "local"];
-exports.dataEnvironments = ["com-datastaging", "com-datalive", "local"];
+exports.appEnvironments = ["dev", "staging", "qa", "live", "local", "unittest"];
+exports.dataEnvironments = ["com-datastaging", "com-datalive", "local", "unittest"];
 const liveDataEnvProcessingEnvs = ["qa", "live", "com-datalive"];
 exports.mapDataEnvsFromAllEnvs = (envs) => {
     const envsLowerCase = envs.map((s) => s.toLocaleLowerCase());
