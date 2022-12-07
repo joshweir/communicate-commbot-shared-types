@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.regions = ["aus", "nova"];
+exports.regions = ["aus", "nova", "uk"];
 exports.appEnvironments = ["dev", "staging", "qa", "live"];
 exports.dataEnvironments = ["com-datastaging", "com-datalive"];
 const liveDataEnvProcessingEnvs = ["qa", "live", "com-datalive"];
