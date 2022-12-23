@@ -1,4 +1,4 @@
-export declare const regions: ["aus", "nova", "uk", "local"];
+export declare const regions: ["aus", "nova", "lon", "local"];
 export declare type Region = typeof regions[number];
 export declare type RegionIncAll = Region | "all";
 export declare const appEnvironments: readonly ["dev", "staging", "qa", "live", "local", "unittest"];

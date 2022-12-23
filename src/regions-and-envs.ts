@@ -1,4 +1,4 @@
-export const regions = ["aus", "nova", "uk", "local"] as ["aus", "nova", "uk", "local"];
+export const regions = ["aus", "nova", "lon", "local"] as ["aus", "nova", "lon", "local"];
 export type Region = typeof regions[number];
 export type RegionIncAll = Region | "all";
 export const appEnvironments = ["dev", "staging", "qa", "live", "local", "unittest"] as const;
