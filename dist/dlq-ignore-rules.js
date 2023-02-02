@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const uuid_1 = require("uuid");
 const joshs_object_matcher_1 = require("joshs-object-matcher");
+const regions_and_envs_1 = require("./regions-and-envs");
 var DlqIgnoreRules;
 (function (DlqIgnoreRules) {
     DlqIgnoreRules.isStepMatcher = (thing) => {
@@ -45,7 +46,7 @@ var DlqIgnoreRules;
         typeof thing.id === 'string' &&
         typeof thing.env === 'string' &&
         typeof thing.region === 'string' &&
-        ['AUS', 'NOVA', 'ALL'].indexOf(thing.region) > -1 &&
+        [...regions_and_envs_1.regionsUpper, 'ALL'].indexOf(thing.region) > -1 &&
         typeof thing.dlqName === 'string' &&
         typeof thing.description === 'string' &&
         (typeof thing.logsMustExistPatterns === 'undefined' || (typeof thing.logsMustExistPatterns === 'object' &&
@@ -57,7 +58,7 @@ var DlqIgnoreRules;
         typeof thing.id === 'string' &&
         typeof thing.env === 'string' &&
         typeof thing.region === 'string' &&
-        ['AUS', 'NOVA', 'ALL'].indexOf(thing.region) > -1 &&
+        [...regions_and_envs_1.regionsUpper, 'ALL'].indexOf(thing.region) > -1 &&
         typeof thing.dlqName === 'string' &&
         typeof thing.description === 'string' &&
         typeof thing.ignoreRules === 'string' &&
@@ -93,7 +94,7 @@ var DlqIgnoreRules;
     DlqIgnoreRules.isTIgnoreRuleKey = (thing) => typeof thing === 'object' &&
         typeof thing.id === 'string' &&
         typeof thing.region === 'string' &&
-        ['AUS', 'NOVA', 'ALL'].indexOf(thing.region) > -1 &&
+        [...regions_and_envs_1.regionsUpper, 'ALL'].indexOf(thing.region) > -1 &&
         typeof thing.env === 'string';
     DlqIgnoreRules.parseIgnoreRuleKey = (input) => {
         try {

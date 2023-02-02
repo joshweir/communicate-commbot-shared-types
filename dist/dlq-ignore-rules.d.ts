@@ -1,4 +1,5 @@
 import { TMatcher } from 'joshs-object-matcher';
+import { RegionUpperIncAll } from './regions-and-envs';
 declare type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 export declare namespace DlqIgnoreRules {
     type TStepMatcher = TMatcher & {
@@ -19,7 +20,7 @@ export declare namespace DlqIgnoreRules {
     type TDlqIgnoreRuleRecord = {
         id: string;
         env: string;
-        region: 'ALL' | 'AUS' | 'NOVA';
+        region: RegionUpperIncAll;
         dlqName: string;
         description: string;
         ignoreRules: (TModplanMatcherExpression | TMatcher)[];

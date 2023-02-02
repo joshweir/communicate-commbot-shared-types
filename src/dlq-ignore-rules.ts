@@ -1,5 +1,6 @@
 import { v4 } from 'uuid';
 import { TMatcher, isMatcher } from 'joshs-object-matcher';
+import { regionsUpper, RegionUpperIncAll } from './regions-and-envs';
 
 type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>;
 
@@ -67,7 +68,7 @@ export namespace DlqIgnoreRules {
   export type TDlqIgnoreRuleRecord = {
     id: string;
     env: string;
-    region: 'ALL' | 'AUS' | 'NOVA';
+    region: RegionUpperIncAll;
     dlqName: string;
     description: string;
     ignoreRules: (TModplanMatcherExpression | TMatcher)[];
@@ -79,7 +80,7 @@ export namespace DlqIgnoreRules {
     typeof thing.id === 'string' &&
     typeof thing.env === 'string' &&
     typeof thing.region === 'string' &&
-    ['AUS', 'NOVA', 'ALL'].indexOf(thing.region) > -1 &&
+    [...regionsUpper, 'ALL'].indexOf(thing.region) > -1 &&
     typeof thing.dlqName === 'string' &&
     typeof thing.description === 'string' &&
     (typeof thing.logsMustExistPatterns === 'undefined' || (
@@ -102,7 +103,7 @@ export namespace DlqIgnoreRules {
     typeof thing.id === 'string' &&
     typeof thing.env === 'string' &&
     typeof thing.region === 'string' &&
-    ['AUS', 'NOVA', 'ALL'].indexOf(thing.region) > -1 &&
+    [...regionsUpper, 'ALL'].indexOf(thing.region) > -1 &&
     typeof thing.dlqName === 'string' &&
     typeof thing.description === 'string' &&
     typeof thing.ignoreRules === 'string' &&
@@ -146,7 +147,7 @@ export namespace DlqIgnoreRules {
     typeof thing === 'object' &&
     typeof thing.id === 'string' &&
     typeof thing.region === 'string' &&
-    ['AUS', 'NOVA', 'ALL'].indexOf(thing.region) > -1 &&
+    [...regionsUpper, 'ALL'].indexOf(thing.region) > -1 &&
     typeof thing.env === 'string';
   
   export const parseIgnoreRuleKey = (input: string): TIgnoreRuleKey | undefined => {
