@@ -1,4 +1,4 @@
-import { SNS } from "aws-sdk";
+import { SNSClient } from "@aws-sdk/client-sns";
 import { WebClient } from "@slack/web-api";
 import { DlqIgnoreRules } from "./dlq-ignore-rules";
 import { Dlq } from "./dlq-types";
@@ -12,7 +12,7 @@ export namespace Commbot {
   ) => Promise<any>;
 
   export type TBuildSendCommandToCommbot = (
-    sns: SNS,
+    sns: SNSClient,
     commbotTopicArn: string,
     localProcessingEnv?: string
   ) => TSendCommandToCommbot;
@@ -362,13 +362,12 @@ export namespace Commbot {
 
     GHOSTOFMANUEL_PR_REMINDER: {};
     RUN_E2E_TESTS_SUCCESS: TWithOrigSlackMsg;
-    RUN_E2E_TESTS_FAILURE: TWithOrigSlackMsg &
-      TFailureCommon;
+    RUN_E2E_TESTS_FAILURE: TWithOrigSlackMsg & TFailureCommon;
 
     QDB2_FAIL_ALERT: TWithRegionAndDataEnv & {
       errorMessage: string;
       qdb2Name: string;
-    }
+    };
   }
 
   export type TCommbotCommandTypes = typeof commbotCommands;
