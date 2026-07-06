@@ -79,7 +79,8 @@ export declare namespace Commbot {
     "GHOSTOFMANUEL_PR_REMINDER",
     "RUN_E2E_TESTS_SUCCESS",
     "RUN_E2E_TESTS_FAILURE",
-    "QDB2_FAIL_ALERT"
+    "QDB2_FAIL_ALERT",
+    "BUSINESS_ALERT"
   ];
   type TWithOrigSlackMsg = {
     slackMessageTs: string;
@@ -304,6 +305,11 @@ export declare namespace Commbot {
     QDB2_FAIL_ALERT: TWithRegionAndDataEnv & {
       errorMessage: string;
       qdb2Name: string;
+    };
+    BUSINESS_ALERT: TWithRegionAndDataEnv & {
+      channel?: string;
+      scenario: string;
+      data: Record<string, string>;
     };
   }
   type TCommbotCommandTypes = typeof commbotCommands;

@@ -92,6 +92,8 @@ export namespace Commbot {
     "RUN_E2E_TESTS_FAILURE",
 
     "QDB2_FAIL_ALERT",
+
+    "BUSINESS_ALERT",
   ] as const;
 
   type TWithOrigSlackMsg = {
@@ -367,6 +369,12 @@ export namespace Commbot {
     QDB2_FAIL_ALERT: TWithRegionAndDataEnv & {
       errorMessage: string;
       qdb2Name: string;
+    };
+
+    BUSINESS_ALERT: TWithRegionAndDataEnv & {
+      channel?: string;
+      scenario: string;
+      data: Record<string, string>;
     };
   }
 
