@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.isRingmasterCommand = exports.ringmasterCommands = void 0;
 exports.ringmasterCommands = [
     'DLQ_CREATE_IGNORE_RULE',
     'DLQ_DELETE_IGNORE_RULE',

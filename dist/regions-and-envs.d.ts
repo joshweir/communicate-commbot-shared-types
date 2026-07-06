@@ -9,5 +9,5 @@ export declare type AppEnv = typeof appEnvironments[number];
 export declare const dataEnvironments: readonly ["com-datadev", "com-datastaging", "com-datalive", "local", "unittest"];
 export declare type DataEnv = typeof dataEnvironments[number];
 export declare type DataEnvIncAll = DataEnv | "all";
-export declare const mapDataEnvsFromAllEnvs: (envs: string[]) => ("local" | "unittest" | "com-datadev" | "com-datastaging" | "com-datalive")[];
+export declare const mapDataEnvsFromAllEnvs: (envs: string[]) => DataEnv[];
 //# sourceMappingURL=regions-and-envs.d.ts.map

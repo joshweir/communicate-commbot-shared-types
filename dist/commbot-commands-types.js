@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Commbot = void 0;
 var Commbot;
 (function (Commbot) {
     Commbot.commbotCommands = [
