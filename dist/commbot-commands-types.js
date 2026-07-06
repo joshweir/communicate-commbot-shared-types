@@ -62,6 +62,7 @@ var Commbot;
         "RUN_E2E_TESTS_SUCCESS",
         "RUN_E2E_TESTS_FAILURE",
         "QDB2_FAIL_ALERT",
+        "BUSINESS_ALERT",
     ];
     Commbot.isCommbotCommand = (thing) => !!thing &&
         !!thing.internalCommand &&
